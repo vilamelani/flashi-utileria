@@ -1,0 +1,48 @@
+FLASHI · UTILERÍA DE RODAJE (Episodio 4)
+========================================
+
+Contenido
+  index.html      Página de inicio con links a las dos apps
+  delivery/       FLASHI Delivery (María · Android)
+  eats/           FLASHI EATS (Clara · iPhone)
+
+1) SUBIR A UN HOSTING (una sola vez)
+  Cualquier hosting estático con HTTPS sirve. Opciones:
+  - Netlify Drop: entrá a https://app.netlify.com/drop y arrastrá la carpeta "flashi-pwa".
+  - Vercel: desde la carpeta, "npx vercel --prod".
+  - GitHub Pages: subí el contenido a un repo y activá Pages.
+  Importante: tiene que ser HTTPS (si no, no se instala ni funciona sin conexión).
+
+2) INSTALAR EN CADA CELULAR (con internet)
+  María · Android · Chrome: abrí <tu-link>/delivery/ → menú ⋮ → "Instalar app"
+    (o "Agregar a la pantalla principal"). Se abre en pantalla completa.
+  Clara · iPhone · Safari: abrí <tu-link>/eats/ → Compartir → "Agregar a inicio".
+  Abrí cada app UNA vez desde el ícono con internet. Después funciona sin conexión.
+  Si subo una versión nueva: abrí la app con internet, cerrala y volvé a abrirla.
+
+3) PREPARAR LOS CELULARES PARA RODAJE
+  - Modo avión + No molestar: evita notificaciones y llamadas reales en toma.
+  - Pantalla siempre encendida: iPhone → Pantalla y brillo → Bloqueo automático → Nunca.
+    Android → Pantalla → Tiempo de espera de pantalla → el máximo.
+  - iPhone (Clara): la barra de arriba es la real. Para la hora de cada escena:
+    Configuración → General → Fecha y hora → desactivar "Automáticamente" y ajustarla.
+    En la app, el reloj de bloqueo usa la hora del iPhone (se puede cambiar en el menú).
+  - Android (María): la barra de arriba es falsa y usa la hora de cada escena (editable).
+  - Brillo al gusto de fotografía; desactivar brillo automático.
+
+4) GESTOS INVISIBLES
+  Abrir menú de control ...... 3 toques rápidos arriba a la izquierda (logo o reloj)
+  Siguiente momento .......... 1 toque en la esquina inferior derecha
+  Congelar / seguir timer .... 2 toques rápidos en la esquina inferior derecha
+  Desbloquear ................ deslizar hacia arriba, o tocar la notificación
+  Descartar notificación ..... deslizarla hacia arriba
+  En el menú: "Mostrar zonas ocultas → Sí" las pinta en rosa para ensayar.
+
+5) EN EL MENÚ DE CONTROL
+  - Elegir escena → "Iniciar escena desde el principio" (para cada toma).
+  - "Disparar ya" en cualquier momento, para retomar desde la mitad.
+  - Editar cualquier texto de notificación o de pantalla (se guarda en ese celular).
+  - Ajustes por escena: arranca en bloqueo o en la app, hora, batería, duración del timer.
+  - Datos de la ficción: nombres, direcciones, local, número de pedido.
+  - Fondo de pantalla de bloqueo: se puede cargar una foto.
+  Los ajustes quedan guardados en cada celular.
