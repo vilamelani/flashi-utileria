@@ -2,21 +2,23 @@ FLASHI · UTILERÍA DE RODAJE (Episodio 4)
 ========================================
 
 Contenido
+  Todos los archivos van sueltos en la raíz del sitio (sin carpetas):
   index.html      Página de inicio con links a las dos apps
-  delivery/       FLASHI Delivery (María · Android)
-  eats/           FLASHI EATS (Clara · iPhone)
+  delivery.html   FLASHI Delivery (María · Android) + delivery.webmanifest + íconos delivery-*.png
+  eats.html       FLASHI EATS (Clara · iPhone) + eats.webmanifest + íconos eats-*.png
+  sw.js           Guarda todo para que funcione sin conexión
 
 1) SUBIR A UN HOSTING (una sola vez)
   Cualquier hosting estático con HTTPS sirve. Opciones:
+  - GitHub Pages: subí TODOS los archivos a la raíz del repo y activá Pages (rama main, carpeta /).
   - Netlify Drop: entrá a https://app.netlify.com/drop y arrastrá la carpeta "flashi-pwa".
   - Vercel: desde la carpeta, "npx vercel --prod".
-  - GitHub Pages: subí el contenido a un repo y activá Pages.
   Importante: tiene que ser HTTPS (si no, no se instala ni funciona sin conexión).
 
 2) INSTALAR EN CADA CELULAR (con internet)
-  María · Android · Chrome: abrí <tu-link>/delivery/ → menú ⋮ → "Instalar app"
+  María · Android · Chrome: abrí <tu-link>/delivery.html → menú ⋮ → "Instalar app"
     (o "Agregar a la pantalla principal"). Se abre en pantalla completa.
-  Clara · iPhone · Safari: abrí <tu-link>/eats/ → Compartir → "Agregar a inicio".
+  Clara · iPhone · Safari: abrí <tu-link>/eats.html → Compartir → "Agregar a inicio".
   Abrí cada app UNA vez desde el ícono con internet. Después funciona sin conexión.
   Si subo una versión nueva: abrí la app con internet, cerrala y volvé a abrirla.
 
