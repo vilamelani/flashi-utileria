@@ -1,0 +1,169 @@
+/* =========================================================================
+   FLASHI Delivery · estilos (dirección visual "A · Pulso")
+   Todo va dentro de .app-flashi para no chocar con las otras apps.
+   ========================================================================= */
+.app-flashi{background:var(--bg);color:var(--tx);font-family:var(--fb);overflow-y:auto;overflow-x:hidden;scrollbar-width:none}
+.app-flashi::-webkit-scrollbar{display:none}
+.app-flashi>*:not(.map):not(.spacer){flex-shrink:0}
+.app-flashi .note{font-size:12.5px;color:var(--mu);font-weight:600}
+.app-flashi .quota{display:flex;flex-direction:column;flex:1}
+/* ---------- elementos comunes app ---------- */
+.app-flashi .top{display:flex;justify-content:space-between;align-items:center;padding:10px 18px 8px;flex:none}
+.app-flashi .logo{font-family:var(--fd);font-weight:800;font-size:21px;letter-spacing:-.035em;display:flex;align-items:center;gap:0}
+.app-flashi .logo i{display:inline-block;width:8px;height:8px;background:var(--g);border-radius:50%;margin:8px 0 0 2px;box-shadow:0 0 12px var(--g)}
+.app-flashi .logo small{font-family:var(--fb);font-weight:700;font-size:11.5px;color:var(--mu);margin:6px 0 0 8px;letter-spacing:0}
+.app-flashi .chip{font-size:12px;font-weight:800;padding:7px 12px;border-radius:99px;background:#1EF08A1c;color:var(--g);display:inline-flex;align-items:center;gap:6px}
+.app-flashi .chip.off{background:#FF2B4A1f;color:var(--r)}
+.app-flashi .chip.neutral{background:var(--s2);color:var(--tx)}
+.app-flashi .dot{width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}
+.app-flashi .card{background:var(--s1);border-radius:20px;padding:14px 16px}
+.app-flashi .pad{padding:0 16px}
+.app-flashi .stack{display:flex;flex-direction:column;gap:10px}
+.app-flashi .lbl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mu)}
+.app-flashi .btn{display:block;width:100%;padding:17px;border-radius:18px;background:var(--g);color:var(--gi);font-weight:800;text-align:center;font-size:16px;box-shadow:0 10px 30px -10px #1EF08Aaa;transition:transform .1s}
+.app-flashi .btn:active{transform:scale(.98)}
+.app-flashi .btn.ghost{background:transparent;border:1.5px solid var(--g);color:var(--g);box-shadow:none}
+.app-flashi .btn.red{background:var(--r);color:#fff;box-shadow:0 10px 30px -10px #FF2B4Aaa}
+.app-flashi .btn.dim{background:var(--s2);color:var(--tx);box-shadow:none}
+.app-flashi .fine{text-align:center;font-size:12px;color:var(--mu)}
+.app-flashi .big{font-family:var(--fd);font-weight:800;letter-spacing:-.03em;line-height:1}
+.app-flashi .green{color:var(--g)}
+.app-flashi .red{color:var(--r)}
+.app-flashi .glowg{text-shadow:0 0 24px #1EF08A77}
+.app-flashi .glowr{text-shadow:0 0 24px #FF2B4A88}
+.app-flashi .spacer{flex:1 1 auto;min-height:12px}
+.app-flashi .tabs{display:flex;justify-content:space-around;padding:10px 6px calc(12px + var(--tabpad,0px));font-size:11px;font-weight:700;flex:none;border-top:1px solid var(--ln);background:var(--bg);position:sticky;bottom:0;margin-top:auto}
+.app-flashi .tabs span{display:flex;flex-direction:column;align-items:center;gap:5px;color:var(--mu)}
+.app-flashi .tabs span.on{color:var(--g)}
+.app-flashi .tabs svg{width:22px;height:22px}
+.app-flashi .alertbox{padding:12px 14px;border-radius:16px;background:linear-gradient(135deg,#FF2B4A33,#FF2B4A0d);border:1px solid #FF2B4A66;font-size:13px;line-height:1.45;color:var(--tx)}
+.app-flashi .alertbox b{display:block;color:var(--r);font-size:13.5px;margin-bottom:2px}
+.app-flashi .pulse-r{animation:pr 1s ease-in-out infinite}
+@keyframes pr{50%{opacity:.35}}
+/* ---------- mapa ---------- */
+.app-flashi .map{position:relative;flex:1 1 auto;min-height:260px;overflow:hidden;background:#07110B}
+.app-flashi .map>svg{position:absolute;inset:0;width:100%;height:100%}
+.app-flashi .map .me{position:absolute;width:22px;height:22px;border-radius:50%;background:var(--g);border:4px solid #06140c;box-shadow:0 0 0 6px #1EF08A33,0 0 24px var(--g);transform:translate(-50%,-50%);transition:left 1.2s ease,top 1.2s ease}
+.app-flashi .map .pin{position:absolute;transform:translate(-50%,-100%);width:30px;height:40px}
+.app-flashi .map .me::after{content:"";position:absolute;inset:-14px;border-radius:50%;border:2px solid #1EF08A66;animation:ping 1.8s ease-out infinite}
+@keyframes ping{from{transform:scale(.5);opacity:1}to{transform:scale(1.6);opacity:0}}
+/* ---------- timers ---------- */
+.app-flashi .ring{--p:100;border-radius:50%;background:conic-gradient(var(--r) calc(var(--p)*1%),var(--s2) 0);display:grid;place-items:center;box-shadow:0 0 44px -8px #FF2B4Aaa}
+.app-flashi .ring>div{border-radius:50%;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.app-flashi .tbar{height:6px;border-radius:6px;background:#00000055;overflow:hidden}
+.app-flashi .tbar i{display:block;height:100%;width:calc(var(--p,100)*1%);background:#fff;border-radius:6px;transition:width .25s linear}
+.app-flashi .t-zero{animation:pr .8s ease-in-out infinite}
+/* ===== FLASHI Delivery (María) ===== */
+.app-flashi .hello{padding:6px 18px 12px}
+.app-flashi .hello small{font-size:12.5px;color:var(--mu);font-weight:600}
+.app-flashi .hello h2{font-family:var(--fd);font-weight:800;font-size:28px;letter-spacing:-.03em;margin:4px 0 0}
+.app-flashi .earn{margin:0 16px;display:flex;flex-direction:column;gap:6px;background:radial-gradient(100% 120% at 100% 0%,#1EF08A26,transparent 60%),var(--s1)}
+.app-flashi .earn .big{font-size:38px}
+.app-flashi .earn .row{display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.app-flashi .bars{display:flex;align-items:flex-end;gap:4px;height:40px}
+.app-flashi .bars i{width:8px;border-radius:3px;background:var(--s3)}
+.app-flashi .bars i.hi{background:var(--g);box-shadow:0 0 10px #1EF08A88}
+.app-flashi .g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 16px 0}
+.app-flashi .g2 .card{display:flex;flex-direction:column;gap:5px;padding:13px 14px}
+.app-flashi .g2 .big{font-size:22px}
+.app-flashi .g2 small{font-size:11.5px;color:var(--mu);font-weight:600;line-height:1.3}
+.app-flashi .radar{margin:12px 16px 0;border-radius:22px;background:var(--s1);padding:18px 16px;display:flex;align-items:center;gap:16px;position:relative;overflow:hidden}
+.app-flashi .radar .rd{width:58px;height:58px;flex:none;border-radius:50%;position:relative;background:radial-gradient(circle,#1EF08A 0 6px,transparent 7px)}
+.app-flashi .radar .rd::before,.app-flashi .radar .rd::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #1EF08A;animation:ping 2s ease-out infinite}
+.app-flashi .radar .rd::after{animation-delay:1s}
+.app-flashi .radar b{display:block;font-size:15px}
+.app-flashi .radar span{font-size:12.5px;color:var(--mu)}
+.app-flashi .demand{display:inline-flex;margin-top:6px;font-size:11.5px;font-weight:800;color:#fff;background:var(--r);padding:4px 9px;border-radius:99px;box-shadow:0 0 16px #FF2B4A88}
+.app-flashi .offline{margin:12px 16px 0;border-radius:22px;padding:18px 16px;background:linear-gradient(135deg,#FF2B4A2e,#FF2B4A0a);border:1px solid #FF2B4A55;display:flex;flex-direction:column;gap:10px}
+.app-flashi .offline b{font-family:var(--fd);font-size:18px;color:var(--r);letter-spacing:-.02em}
+.app-flashi .offline span{font-size:13px;color:var(--tx2);line-height:1.4}
+/* entrega con urgencia (Esc 1) */
+.app-flashi .urg{margin:4px 16px 0;border-radius:24px;padding:18px 18px 16px;background:linear-gradient(150deg,#FF2B4A,#C3102A);color:#fff;box-shadow:0 18px 44px -14px #FF2B4Acc;display:flex;flex-direction:column;gap:12px}
+.app-flashi .urg p{margin:0;font-size:15.5px;font-weight:700;line-height:1.35}
+.app-flashi .urg .row .tt{padding:0;opacity:1;font-family:var(--fd);font-weight:800;font-size:62px;letter-spacing:-.04em;line-height:1}
+.app-flashi .urg .row{display:flex;justify-content:space-between;align-items:flex-end}
+.app-flashi .urg .row span{font-size:12px;font-weight:800;opacity:.9;padding-bottom:8px}
+.app-flashi .dest{margin:12px 16px 0;display:flex;flex-direction:column;gap:4px}
+.app-flashi .dest h3{margin:2px 0 0;font-size:19px;font-weight:800}
+.app-flashi .dest .addr{font-size:14.5px;color:var(--tx)}
+.app-flashi .dest .meta{font-size:12.5px;color:var(--mu)}
+.app-flashi .minimap{position:relative;height:150px;margin:12px 16px 0;border-radius:20px;overflow:hidden}
+.app-flashi .minimap svg{position:absolute;inset:0;width:100%;height:100%}
+.app-flashi .acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 16px 0}
+.app-flashi .acts span{background:var(--s2);border-radius:14px;padding:11px;text-align:center;font-weight:700;font-size:13px}
+.app-flashi .bottom{padding:14px 16px calc(18px + var(--tabpad,0px));display:flex;flex-direction:column;gap:10px}
+/* fail / success */
+.app-flashi .res{display:flex;flex-direction:column;align-items:center;text-align:center;padding:40px 22px 0}
+.app-flashi .res.bad{background:radial-gradient(120% 55% at 50% 0%,#FF2B4A55,transparent 62%)}
+.app-flashi .res.good{background:radial-gradient(120% 55% at 50% 0%,#1EF08A44,transparent 62%)}
+.app-flashi .xmark,.app-flashi .check{width:84px;height:84px;border-radius:50%;position:relative;margin-bottom:18px}
+.app-flashi .xmark{border:3px solid var(--r);box-shadow:0 0 40px #FF2B4A99,inset 0 0 20px #FF2B4A55}
+.app-flashi .xmark::before,.app-flashi .xmark::after{content:"";position:absolute;left:50%;top:50%;width:34px;height:4px;background:var(--r);border-radius:2px;transform:translate(-50%,-50%) rotate(45deg)}
+.app-flashi .xmark::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.app-flashi .check{background:var(--g);box-shadow:0 0 50px #1EF08Aaa}
+.app-flashi .check::after{content:"";position:absolute;left:31px;top:20px;width:18px;height:34px;border:solid var(--gi);border-width:0 6px 6px 0;transform:rotate(45deg)}
+.app-flashi .res h1{font-family:var(--fd);font-weight:800;font-size:30px;letter-spacing:-.035em;line-height:1.05;margin:0 0 10px;text-wrap:balance}
+.app-flashi .res p{margin:0;font-size:15px;color:var(--tx2);line-height:1.45;max-width:30ch}
+.app-flashi .lost{margin:22px 16px 0;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--mu)}
+.app-flashi .lost s{font-family:var(--fd);font-weight:800;font-size:22px;color:var(--r);text-decoration-thickness:3px}
+.app-flashi .won{margin-top:18px;font-family:var(--fd);font-weight:800;font-size:44px;color:var(--g);letter-spacing:-.04em}
+.app-flashi .st2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 16px 0}
+.app-flashi .st2 .card{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--mu);font-weight:600}
+.app-flashi .st2 b{font-family:var(--fd);font-size:19px;color:var(--tx)}
+/* mapa pantalla completa */
+.app-flashi .s-map .map{margin-top:0}
+.app-flashi .instr{position:absolute;left:12px;right:12px;top:10px;z-index:3;background:#0E1A13ee;border:1px solid #1EF08A33;border-radius:18px;padding:12px 14px;display:flex;gap:12px;align-items:center;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.app-flashi .instr .ar{width:38px;height:38px;border-radius:12px;background:var(--g);color:var(--gi);display:grid;place-items:center;flex:none}
+.app-flashi .instr b{display:block;font-size:17px;font-family:var(--fd);letter-spacing:-.02em}
+.app-flashi .instr span{font-size:12.5px;color:var(--tx2)}
+.app-flashi .tchip{position:absolute;left:50%;transform:translateX(-50%);top:84px;z-index:3;background:var(--r);color:#fff;border-radius:99px;padding:9px 16px;display:flex;gap:10px;align-items:center;font-weight:800;font-size:13px;box-shadow:0 0 30px #FF2B4Acc;white-space:nowrap}
+.app-flashi .tchip b{font-family:var(--fd);font-size:20px;letter-spacing:-.02em}
+.app-flashi .sheet{background:var(--s1);border-radius:26px 26px 0 0;padding:16px 16px 18px;display:flex;flex-direction:column;gap:6px;margin-top:-22px;position:relative;z-index:2;flex:none}
+.app-flashi .sheet .grab{width:40px;height:4px;border-radius:2px;background:var(--s3);align-self:center;margin-bottom:4px}
+.app-flashi .sheet h3{margin:0;font-size:19px;font-weight:800}
+.app-flashi .sheet .addr{font-size:14.5px}
+.app-flashi .sheet .meta{font-size:12.5px;color:var(--mu);margin-bottom:6px}
+/* oferta */
+.app-flashi .ringwrap{display:flex;justify-content:center;padding:18px 0 14px}
+.app-flashi .ring.lg{width:176px;height:176px}
+.app-flashi .ring.lg>div{width:148px;height:148px}
+.app-flashi .ring .rt{font-family:var(--fd);font-weight:800;font-size:44px;color:var(--r);letter-spacing:-.03em;line-height:1}
+.app-flashi .ring small{font-size:12px;color:var(--mu);font-weight:700}
+.app-flashi .ocard{margin:0 16px;display:flex;flex-direction:column;gap:5px}
+.app-flashi .ocard .row{display:flex;justify-content:space-between;align-items:baseline;font-weight:800;font-size:16px}
+.app-flashi .ocard .row b{font-family:var(--fd);color:var(--g);font-size:19px}
+.app-flashi .ocard .addr{font-size:13.5px}
+.app-flashi .ocard .meta{font-size:12px;color:var(--mu)}
+.app-flashi .bonusbox{margin:8px 16px 14px;border-radius:26px;padding:22px 18px;text-align:center;background:radial-gradient(90% 100% at 50% 0%,#1EF08A55,transparent 70%),linear-gradient(170deg,#10301E,#0A1710);border:1px solid #1EF08A44}
+.app-flashi .bonusbox .big{font-size:48px;color:var(--g);text-shadow:0 0 30px #1EF08A88;margin:8px 0}
+.app-flashi .bonusbox p{margin:0;font-size:15px;line-height:1.4;color:var(--tx)}
+/* ganancias */
+.app-flashi .bal{margin:4px 16px 0;padding:18px 16px}
+.app-flashi .bal .big{font-size:40px;margin-top:6px}
+.app-flashi .mov{margin:12px 16px 0;display:flex;flex-direction:column}
+.app-flashi .mov div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 2px;border-bottom:1px solid var(--ln);font-size:14px}
+.app-flashi .mov div span small{display:block;font-size:12px;color:var(--mu);margin-top:2px}
+.app-flashi .mov div b{font-family:var(--fd);font-size:15px;white-space:nowrap}
+.app-flashi .mov div.hl{background:linear-gradient(90deg,#1EF08A26,transparent);border-radius:14px;padding:14px 12px;border-bottom:0;margin-bottom:4px;animation:hl 1.4s ease-out}
+.app-flashi .mov div.hl b{color:var(--g);font-size:18px;text-shadow:0 0 16px #1EF08A99}
+@keyframes hl{from{box-shadow:0 0 0 2px var(--g);}to{box-shadow:0 0 0 0 transparent}}
+.app-flashi .mov div.neg b{color:var(--r)}
+/* medalla y cupo */
+.app-flashi .medal{width:190px;height:190px;border-radius:50%;margin:30px auto 18px;background:conic-gradient(from 200deg,#1EF08A,#0B5F35,#1EF08A,#0B5F35,#1EF08A);display:grid;place-items:center;box-shadow:0 0 60px #1EF08A77}
+.app-flashi .medal>div{width:158px;height:158px;border-radius:50%;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.app-flashi .medal b{font-family:var(--fd);font-weight:800;font-size:40px;color:var(--g);letter-spacing:-.04em;line-height:1}
+.app-flashi .medal small{font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--mu);margin-top:6px}
+.app-flashi .center{text-align:center;padding:0 22px}
+.app-flashi .center h1{font-family:var(--fd);font-weight:800;font-size:22px;line-height:1.2;letter-spacing:-.03em;margin:0 0 10px;text-wrap:balance}
+.app-flashi .perks{margin:16px 16px 0;display:flex;flex-direction:column;gap:8px}
+.app-flashi .perks div{background:var(--s1);border-radius:14px;padding:12px 14px;font-size:14px;display:flex;gap:10px;align-items:center}
+.app-flashi .perks div::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--g);box-shadow:0 0 8px var(--g);flex:none}
+.app-flashi .perks.bad div::before{background:var(--r);box-shadow:0 0 8px var(--r)}
+.app-flashi .quota{background:radial-gradient(120% 50% at 50% 0%,#FF2B4A40,transparent 60%)}
+.app-flashi .qring{width:180px;height:180px;border-radius:50%;margin:26px auto 16px;background:conic-gradient(var(--r) 0 3%,var(--s2) 0);display:grid;place-items:center;box-shadow:0 0 50px -6px #FF2B4Aaa}
+.app-flashi .qring>div{width:152px;height:152px;border-radius:50%;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.app-flashi .qring b{font-family:var(--fd);font-weight:800;font-size:46px;color:var(--r);letter-spacing:-.04em;line-height:1}
+.app-flashi .qring small{font-size:12px;color:var(--mu);font-weight:700;margin-top:4px}
+.app-flashi .left{display:flex;justify-content:center;gap:8px;margin-top:6px}
+.app-flashi .left span{background:var(--s2);border-radius:12px;padding:8px 12px;font-family:var(--fd);font-weight:700;font-size:15px}
+.app-flashi .left span small{font-family:var(--fb);font-size:11px;color:var(--mu);margin-left:3px}

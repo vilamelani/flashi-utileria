@@ -1,0 +1,410 @@
+<title>FLASHI Direcciones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:wght@400;700&family=Figtree:wght@400;600;700;800;900&family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&family=Manrope:wght@400;600;700;800&family=Schibsted+Grotesk:wght@400;500;700;800&family=Unbounded:wght@500;700;800&display=swap">
+<style>
+:root{color-scheme:dark;--pg:#0C0F0D;--pg2:#141A16;--ln:#232C26;--ptx:#E6ECE8;--pmu:#8B968F}
+*{box-sizing:border-box}
+body{background:var(--pg);color:var(--ptx);font-family:Figtree,system-ui,sans-serif;margin:0;padding:40px 16px 64px}
+.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:56px}
+.eyebrow{font-family:"Courier Prime",Courier,monospace;font-size:13px;letter-spacing:.04em;color:var(--pmu)}
+header h1{font-size:clamp(30px,5vw,46px);font-weight:900;letter-spacing:-.02em;margin:8px 0 12px;text-wrap:balance}
+header p{max-width:62ch;color:#C3CCC6;line-height:1.55;margin:0}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:18px;font-size:13px;color:var(--pmu)}
+.legend b{color:var(--ptx);font-weight:700}
+section.dir{display:flex;flex-direction:column;gap:22px;border-top:1px solid var(--ln);padding-top:28px}
+.dhead{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;align-items:start}
+.dletter{font-family:"Courier Prime",monospace;font-weight:700;font-size:15px;border:1px solid var(--ln);border-radius:6px;padding:4px 10px;grid-row:span 3}
+.dhead h2{margin:0;font-size:26px;font-weight:800;letter-spacing:-.01em}
+.dhead p{margin:0;color:#C3CCC6;line-height:1.5;max-width:70ch}
+.specs{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;font-size:12.5px;color:var(--pmu)}
+.sw{display:inline-flex;gap:4px;vertical-align:middle}
+.sw i{width:22px;height:22px;border-radius:5px;border:1px solid #ffffff22;display:block}
+.phones{display:flex;flex-wrap:wrap;gap:28px;justify-content:center}
+figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:10px}
+figcaption{font-family:"Courier Prime",monospace;font-size:12px;color:var(--pmu);text-align:center;max-width:264px}
+.phone{width:264px;height:560px;max-width:100%;border-radius:38px;background:#1a1d1b;padding:7px;box-shadow:0 0 0 1px #2c322e,0 30px 60px -20px #000}
+.phone.and{border-radius:30px}
+.scr{position:relative;height:100%;border-radius:32px;overflow:hidden;display:flex;flex-direction:column;background:var(--bg);color:var(--tx);font-family:var(--fb)}
+.and .scr{border-radius:24px}
+.sb{display:flex;justify-content:space-between;align-items:center;padding:11px 18px 5px;font-size:11px;font-weight:700;font-family:system-ui,sans-serif;flex:none;position:relative;z-index:3}
+.sb .ic{display:flex;gap:5px;align-items:center;font-size:10px}
+.bat{display:inline-block;width:18px;height:9px;border:1.5px solid currentColor;border-radius:3px;position:relative;opacity:.9}
+.bat::after{content:"";position:absolute;left:1px;top:1px;bottom:1px;width:var(--lv,30%);background:currentColor;border-radius:1px}
+.bat.low::after{background:#FF3B3B}
+.island{position:absolute;left:50%;top:8px;transform:translateX(-50%);width:76px;height:22px;background:#000;border-radius:14px}
+.punch{position:absolute;left:50%;top:9px;transform:translateX(-50%);width:11px;height:11px;background:#000;border-radius:50%;box-shadow:0 0 0 2px #111}
+.tabs{margin-top:auto;display:flex;justify-content:space-around;padding:9px 6px 18px;font-size:9.5px;flex:none}
+.tabs span{display:flex;flex-direction:column;align-items:center;gap:4px;opacity:.55}
+.tabs span.on{opacity:1}
+.tabs span::before{content:"";width:16px;height:16px;border-radius:5px;border:1.8px solid currentColor}
+.num{font-variant-numeric:tabular-nums}
+
+/* ============ A · PULSO ============ */
+.A{--bg:#060D09;--s1:#0E1A13;--s2:#16271D;--g:#1EF08A;--r:#FF2B4A;--tx:#E9F4EE;--mu:#7E958A;--fd:Unbounded,system-ui,sans-serif;--fb:Manrope,system-ui,sans-serif}
+.A .top{display:flex;justify-content:space-between;align-items:center;padding:8px 16px}
+.A .logo{font-family:var(--fd);font-weight:800;font-size:17px;letter-spacing:-.03em}
+.A .logo i{display:inline-block;width:7px;height:7px;background:var(--g);border-radius:50%;margin-left:2px;box-shadow:0 0 10px var(--g)}
+.A .logo small{font-family:var(--fb);font-weight:600;font-size:10px;color:var(--mu);margin-left:6px;letter-spacing:0}
+.A .chip{font-size:10px;font-weight:700;padding:5px 9px;border-radius:99px;background:#1EF08A1c;color:var(--g)}
+.A .alert{margin:4px 12px 0;padding:10px 12px;border-radius:14px;background:linear-gradient(135deg,#FF2B4A30,#FF2B4A10);border:1px solid #FF2B4A55;font-size:11px;line-height:1.4}
+.A .alert b{display:block;color:var(--r);font-size:11.5px;margin-bottom:2px}
+.A .ringwrap{display:flex;justify-content:center;padding:16px 0 10px}
+.A .ring{--p:100;width:128px;height:128px;border-radius:50%;background:conic-gradient(var(--r) calc(var(--p)*1%),var(--s2) 0);display:grid;place-items:center;box-shadow:0 0 38px -6px #FF2B4A99;transition:background .3s}
+.A .ring>div{width:108px;height:108px;border-radius:50%;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.A .ring .n{font-family:var(--fd);font-weight:700;font-size:30px;color:var(--r)}
+.A .ring small{font-size:10px;color:var(--mu)}
+.A .card{margin:0 12px;padding:12px 14px;border-radius:18px;background:var(--s1);display:flex;flex-direction:column;gap:5px}
+.A .row{display:flex;justify-content:space-between;align-items:baseline;font-weight:700;font-size:13px}
+.A .row b{font-family:var(--fd);color:var(--g);font-size:15px}
+.A .addr{font-size:11.5px}
+.A .meta{font-size:10.5px;color:var(--mu)}
+.A .btn{margin:12px 12px 0;padding:14px;border-radius:16px;background:var(--g);color:#03140A;font-weight:800;text-align:center;font-size:14px;box-shadow:0 8px 28px -8px #1EF08Aaa}
+.A .fine{text-align:center;font-size:10px;color:var(--mu);margin-top:9px}
+/* A fail */
+.A.fail{background:radial-gradient(120% 60% at 50% 0%,#FF2B4A55,transparent 60%),var(--bg)}
+.A .x{width:62px;height:62px;border-radius:50%;border:2px solid var(--r);margin:34px auto 14px;position:relative;box-shadow:0 0 30px #FF2B4A88}
+.A .x::before,.A .x::after{content:"";position:absolute;left:50%;top:50%;width:26px;height:3px;background:var(--r);border-radius:2px;transform:translate(-50%,-50%) rotate(45deg)}
+.A .x::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.A h3{font-family:var(--fd);font-weight:800;font-size:22px;text-align:center;margin:0 16px 8px;letter-spacing:-.02em;line-height:1.1}
+.A .sub{text-align:center;font-size:12px;color:#C9D6CF;margin:0 22px;line-height:1.45}
+.A .lost{margin:18px 12px 0;padding:12px 14px;border-radius:18px;background:var(--s1);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--mu)}
+.A .lost s{font-family:var(--fd);font-weight:700;font-size:18px;color:var(--r);text-decoration-thickness:2px}
+.A .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 12px 0}
+.A .stats div{background:var(--s1);border-radius:14px;padding:10px 12px;font-size:10px;color:var(--mu);display:flex;flex-direction:column;gap:3px}
+.A .stats b{font-family:var(--fd);font-size:15px;color:var(--tx)}
+.A .stats b.dn{color:var(--r)}
+.A .ghost{margin:14px 12px 0;padding:13px;border-radius:16px;border:1.5px solid var(--g);color:var(--g);font-weight:800;text-align:center;font-size:13px}
+/* A eats */
+.A .loc{padding:6px 16px 0;font-size:10px;color:var(--mu)}
+.A .loc b{display:block;color:var(--tx);font-size:12.5px;margin-top:1px}
+.A .promo{margin:12px 12px 0;padding:16px;border-radius:22px;background:radial-gradient(90% 90% at 100% 0%,#1EF08A55,transparent 60%),linear-gradient(160deg,#10301E,#0A1710);border:1px solid #1EF08A33;position:relative;overflow:hidden}
+.A .promo .tag{display:inline-block;font-size:10px;font-weight:800;color:#fff;background:var(--r);padding:4px 8px;border-radius:99px;box-shadow:0 0 18px #FF2B4A88}
+.A .promo h4{font-family:var(--fd);font-weight:800;font-size:19px;margin:10px 0 2px;line-height:1.1;letter-spacing:-.02em}
+.A .promo .big{font-family:var(--fd);font-weight:800;font-size:34px;color:var(--g);letter-spacing:-.03em;text-shadow:0 0 22px #1EF08A77}
+.A .promo p{font-size:11px;color:#C9D6CF;margin:2px 0 0}
+.A .last{margin:10px 12px 0;padding:12px;border-radius:18px;background:var(--s1);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.A .thumb{width:44px;height:44px;border-radius:12px;background:radial-gradient(circle at 35% 35%,#E8A34A,#7A3A12);flex:none}
+.A .last div{font-size:10.5px;color:var(--mu);line-height:1.35;flex:1;min-width:0}
+.A .last div b{display:block;color:var(--tx);font-size:12px}
+.A .sbtn{flex-basis:100%;text-align:center;padding:10px 11px;border-radius:12px;background:var(--g);color:#03140A;font-weight:800;font-size:12px;box-shadow:0 8px 24px -10px #1EF08Aaa}
+.A .cats{display:flex;gap:6px;margin:12px 12px 0;flex-wrap:wrap}
+.A .cats span{font-size:10.5px;font-weight:700;padding:7px 10px;border-radius:99px;background:var(--s2)}
+.A .tabs{color:var(--tx)} .A .tabs .on{color:var(--g)}
+
+/* ============ B · CONTRATO ============ */
+.B{--bg:#0B1712;--s1:#10211A;--ln:#24392E;--g:#2FBF71;--r:#E4213B;--tx:#EDEAE0;--mu:#8C9C92;--fd:Fraunces,Georgia,serif;--fb:"Schibsted Grotesk",system-ui,sans-serif}
+.B .top{display:flex;justify-content:space-between;align-items:baseline;padding:10px 18px 12px;border-bottom:1px solid var(--ln)}
+.B .logo{font-family:var(--fd);font-weight:500;font-size:20px;letter-spacing:-.01em}
+.B .logo em{color:var(--g)}
+.B .lbl{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);font-weight:700}
+.B .alert{display:flex;gap:10px;padding:10px 18px;border-bottom:1px solid var(--ln);font-size:10.5px;line-height:1.4;color:#D8D3C6}
+.B .alert::before{content:"";width:3px;flex:none;background:var(--r)}
+.B .alert b{color:var(--r);display:block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:2px}
+.B .offer{padding:16px 18px 0;display:flex;flex-direction:column;gap:6px}
+.B .amt{font-family:var(--fd);font-weight:300;font-size:42px;line-height:1;letter-spacing:-.02em}
+.B .dl{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;margin-top:10px;font-size:11px;border-top:1px solid var(--ln);padding-top:10px}
+.B .dl dt{color:var(--mu)} .B .dl dd{margin:0;text-align:right}
+.B .timer{margin:16px 18px 0;display:flex;flex-direction:column;gap:7px}
+.B .timer .t{display:flex;justify-content:space-between;align-items:baseline}
+.B .timer .n{font-family:var(--fd);font-weight:500;font-size:26px;color:var(--r)}
+.B .bar{height:3px;background:var(--ln);position:relative}
+.B .bar i{position:absolute;left:0;top:0;bottom:0;width:calc(var(--p,100)*1%);background:var(--r);transition:width .3s}
+.B .btn{margin:16px 18px 0;padding:14px;border-radius:6px;background:var(--g);color:#06140D;font-weight:800;text-align:center;font-size:13px;letter-spacing:.02em}
+.B .fine{text-align:center;font-size:9.5px;color:var(--mu);margin:9px 18px 0;line-height:1.4}
+/* B fail */
+.B .ftop{padding:26px 18px 14px;border-bottom:1px solid var(--ln)}
+.B .ftop h3{font-family:var(--fd);font-weight:500;font-size:25px;line-height:1.08;margin:8px 0 8px;letter-spacing:-.01em}
+.B .ftop h3 em{color:var(--r);font-style:italic}
+.B .ftop p{font-size:11px;color:#CFCABD;margin:0;line-height:1.45}
+.B table{width:calc(100% - 36px);margin:12px 18px 0;border-collapse:collapse;font-size:11px}
+.B td{padding:7px 0;border-bottom:1px solid var(--ln)}
+.B td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.B td.bad{color:var(--r);font-weight:700}
+.B .note{margin:12px 18px 0;font-size:9.5px;color:var(--mu);line-height:1.45}
+.B .ghost{margin:14px 18px 0;padding:12px;border-radius:6px;border:1px solid var(--ln);text-align:center;font-size:12px;font-weight:700}
+/* B eats */
+.B .greet{padding:14px 18px 0}
+.B .greet h4{font-family:var(--fd);font-weight:300;font-size:26px;margin:4px 0 0;line-height:1.05}
+.B .greet h4 em{font-weight:500}
+.B .promo{margin:14px 18px 0;border:1px solid var(--ln);border-radius:8px;padding:14px;background:var(--s1)}
+.B .promo .amt{font-size:36px;color:var(--g)}
+.B .promo p{font-size:11px;margin:6px 0 0;color:#CFCABD}
+.B .exp{display:flex;flex-direction:column;gap:3px;margin-top:10px;padding-top:9px;border-top:1px solid var(--ln);font-size:10.5px}
+.B .exp b{color:var(--r)}
+.B .btn2{margin-top:12px;padding:11px;border-radius:6px;background:var(--g);color:#06140D;font-weight:800;text-align:center;font-size:12px}
+.B .list{margin:12px 18px 0;display:flex;flex-direction:column}
+.B .list div{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--ln);font-size:11.5px}
+.B .list span{color:var(--mu);font-size:10.5px}
+.B .tabs{color:var(--tx);border-top:1px solid var(--ln)} .B .tabs .on{color:var(--g)}
+
+/* ============ C · ALARMA ============ */
+.C{--bg:#050806;--s1:#111713;--g:#00D65B;--r:#FF1B1B;--tx:#FFFFFF;--mu:#98A39B;--fd:Anton,Impact,sans-serif;--fb:Figtree,system-ui,sans-serif}
+.C .top{display:flex;justify-content:space-between;align-items:center;background:var(--g);color:#000;padding:8px 14px;margin-top:2px}
+.C .logo{font-family:var(--fd);font-size:22px;letter-spacing:.01em;transform:skewX(-8deg);line-height:1}
+.C .top span{font-weight:900;font-size:10px;letter-spacing:.08em}
+.C .hz{height:18px;background:repeating-linear-gradient(-45deg,var(--r) 0 10px,#000 10px 20px);display:flex;align-items:center;overflow:hidden}
+.C .hz b{background:#000;color:var(--r);font-size:9.5px;font-weight:900;letter-spacing:.1em;padding:2px 8px;margin-left:12px;white-space:nowrap}
+.C .red{background:var(--r);color:#000;padding:10px 14px 12px;text-align:center}
+.C .red .n{font-family:var(--fd);font-size:96px;line-height:.95;display:block}
+.C .red small{font-weight:900;font-size:11px;letter-spacing:.08em}
+.C .info{padding:12px 14px 0;display:flex;flex-direction:column;gap:4px}
+.C .info .k{font-family:var(--fd);font-size:20px;letter-spacing:.01em;line-height:1.05}
+.C .info .k em{font-style:normal;color:var(--g)}
+.C .info .m{font-size:11px;color:var(--mu);font-weight:600}
+.C .btn{margin:12px 14px 0;padding:14px;background:var(--g);color:#000;font-family:var(--fd);font-size:24px;text-align:center;letter-spacing:.03em}
+.C .fine{text-align:center;font-size:10px;font-weight:900;color:var(--r);margin-top:9px;letter-spacing:.06em}
+/* C fail */
+.C.fail{background:var(--r);color:#000}
+.C.fail .big{font-family:var(--fd);font-size:78px;line-height:.9;padding:34px 14px 0;letter-spacing:-.01em}
+.C.fail .t2{font-weight:900;font-size:15px;padding:8px 14px 0;line-height:1.2}
+.C.fail .loss{margin:18px 14px 0;background:#000;color:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:center}
+.C.fail .loss s{font-family:var(--fd);font-size:30px;color:var(--r);text-decoration-thickness:3px}
+.C.fail .loss span{font-size:10px;font-weight:800;letter-spacing:.06em;color:#FF9A9A}
+.C.fail .meter{margin:12px 14px 0;font-size:10px;font-weight:900;letter-spacing:.06em}
+.C.fail .meter i{display:block;height:10px;background:#00000033;margin-top:5px;position:relative}
+.C.fail .meter i::after{content:"";position:absolute;left:0;top:0;bottom:0;width:71%;background:#000}
+.C.fail .band{margin-top:auto;background:#000;color:var(--g);font-family:var(--fd);font-size:22px;text-align:center;padding:14px 0 26px;letter-spacing:.04em}
+/* C eats */
+.C .coupon{margin:12px 14px 0;background:var(--g);color:#000;padding:12px 14px 14px;position:relative}
+.C .coupon .tag{display:inline-block;margin-bottom:6px;background:var(--r);color:#fff;font-weight:900;font-size:10px;padding:4px 7px;letter-spacing:.04em}
+.C .coupon small{font-weight:900;font-size:10.5px;letter-spacing:.08em}
+.C .coupon .amt{font-family:var(--fd);font-size:58px;line-height:.95;display:block;margin-top:4px}
+.C .coupon p{margin:4px 0 0;font-size:11px;font-weight:700}
+.C .again{margin:10px 14px 0;display:flex;flex-wrap:wrap;align-items:center;gap:10px;background:var(--s1);padding:10px}
+.C .again .thumb{width:42px;height:42px;background:radial-gradient(circle at 35% 35%,#E8A34A,#7A3A12);flex:none}
+.C .again div{flex:1;font-size:10.5px;color:var(--mu);font-weight:600;line-height:1.3}
+.C .again div b{display:block;color:#fff;font-size:12px}
+.C .again .go{flex-basis:100%;text-align:center;background:var(--r);color:#fff;font-family:var(--fd);font-size:18px;padding:9px 10px;letter-spacing:.04em}
+.C .cats{display:flex;gap:6px;margin:10px 14px 0;flex-wrap:wrap}
+.C .cats span{font-size:10.5px;font-weight:900;padding:7px 9px;border:1.5px solid #fff3;letter-spacing:.03em}
+.C .tabs{color:#fff} .C .tabs .on{color:var(--g)}
+.C .tabs span::before{border-radius:0}
+
+footer{border-top:1px solid var(--ln);padding-top:24px;color:#C3CCC6;line-height:1.55;font-size:14px;max-width:70ch}
+footer b{color:var(--ptx)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">EPISODIO 4 · UTILERÍA DIGITAL · PROPUESTAS DE ARTE</div>
+  <h1>FLASHI: tres direcciones visuales</h1>
+  <p>Las tres usan verde como color de marca y rojo para la urgencia. Cambian el tono de la amenaza: una seduce, otra administra, otra grita. Cada una muestra las mismas tres pantallas para compararlas directo. Las cuentas regresivas corren en vivo.</p>
+  <div class="legend">
+    <span><b>1 ·</b> María, Esc 11: pedido con 30 s para aceptar (Android)</span>
+    <span><b>2 ·</b> María, Esc 1: entrega tarde, pierde el bono (Android)</span>
+    <span><b>3 ·</b> Clara, Esc 7: cupón y “Pedir otra vez” (iPhone)</span>
+  </div>
+</header>
+
+<!-- ================= A ================= -->
+<section class="dir">
+  <div class="dhead">
+    <span class="dletter">A</span>
+    <h2>Pulso</h2>
+    <p>La app que te seduce. Negro verdoso, verde neón que brilla y rojo con resplandor. Se parece a una app de delivery moderna en modo oscuro, pero todo late: los montos brillan, el reloj se desangra. La amenaza viene envuelta en recompensa.</p>
+    <div class="specs">
+      <span class="sw"><i style="background:#060D09"></i><i style="background:#16271D"></i><i style="background:#1EF08A"></i><i style="background:#FF2B4A"></i><i style="background:#E9F4EE"></i></span>
+      <span>Unbounded (títulos y montos) · Manrope (texto)</span>
+      <span>Bordes redondeados, brillos</span>
+    </div>
+  </div>
+  <div class="phones">
+    <figure><div class="phone and"><div class="scr A">
+      <div class="punch"></div>
+      <div class="sb"><span>14:37</span><span class="ic">5G <span class="bat low" style="--lv:14%"></span></span></div>
+      <div class="top"><span class="logo">flashi<i></i><small>Delivery</small></span><span class="chip">● Conectada</span></div>
+      <div class="alert"><b>Alta demanda en tu zona</b>Si permanecés desconectada perderás prioridad para futuros pedidos.</div>
+      <div class="ringwrap"><div class="ring" data-cd="30"><div><span class="n num">0:30</span><small>para aceptar</small></div></div></div>
+      <div class="card">
+        <div class="row"><span>Burger Voraz</span><b class="num">$3.200</b></div>
+        <div class="addr">→ Av. Rivadavia 4120, 7º B</div>
+        <div class="meta">2,8 km · 14 min · 1 bolsa grande</div>
+      </div>
+      <div class="btn">Aceptar pedido</div>
+      <div class="fine">Rechazar resta 15 puntos de prioridad</div>
+    </div></div><figcaption>1 · Esc 11 · Oferta con cuenta regresiva</figcaption></figure>
+
+    <figure><div class="phone and"><div class="scr A fail">
+      <div class="punch"></div>
+      <div class="sb"><span>11:52</span><span class="ic">5G <span class="bat" style="--lv:48%"></span></span></div>
+      <div class="x"></div>
+      <h3>¡Entregaste tarde!</h3>
+      <p class="sub">¡Estuviste cerca pero no fue suficiente! ¡Será la próxima!</p>
+      <div class="lost"><span>Bono entrega en 1 min</span><s class="num">$10.000</s></div>
+      <div class="stats">
+        <div>Llegaste tarde por<b class="dn num">0:47</b></div>
+        <div>Puntualidad<b class="dn num">71% ↓</b></div>
+      </div>
+      <div class="ghost">Buscar próximo pedido</div>
+    </div></div><figcaption>2 · Esc 1 · Bono perdido</figcaption></figure>
+
+    <figure><div class="phone"><div class="scr A">
+      <div class="island"></div>
+      <div class="sb"><span>21:14</span><span class="ic">5G <span class="bat" style="--lv:64%"></span></span></div>
+      <div class="top"><span class="logo">flashi<i></i><small>Eats</small></span><span class="chip" style="background:#16271D;color:#E9F4EE">Clara</span></div>
+      <div class="loc">Entregar en<b>Av. Rivadavia 4120, 7º B ▾</b></div>
+      <div class="promo">
+        <span class="tag num" data-exp="899">Vence en 14:59</span>
+        <h4>¡Lunes de no cocinar!</h4>
+        <div class="big num">$8.000</div>
+        <p>de regalo para tu snack favorito</p>
+      </div>
+      <div class="last"><span class="thumb"></span><div><b>Burger Voraz</b>Doble cheddar + papas</div><span class="sbtn">Pedir otra vez</span></div>
+      <div class="cats"><span>Hamburguesas</span><span>Sushi</span><span>Helado</span><span>Chocolate</span></div>
+      <div class="tabs"><span class="on">Inicio</span><span>Buscar</span><span>Pedidos</span><span>Perfil</span></div>
+    </div></div><figcaption>3 · Esc 7 · Cupón de $8.000</figcaption></figure>
+  </div>
+</section>
+
+<!-- ================= B ================= -->
+<section class="dir">
+  <div class="dhead">
+    <span class="dletter">B</span>
+    <h2>Contrato</h2>
+    <p>La app que te administra. Verde botella, texto crema, serif elegante para los montos y líneas finas como un estado de cuenta. Nada grita: el rojo aparece poco y en letra chica. La violencia está en la calma, en el registro de desempeño y en la letra chica.</p>
+    <div class="specs">
+      <span class="sw"><i style="background:#0B1712"></i><i style="background:#24392E"></i><i style="background:#2FBF71"></i><i style="background:#E4213B"></i><i style="background:#EDEAE0"></i></span>
+      <span>Fraunces (montos y títulos) · Schibsted Grotesk (texto)</span>
+      <span>Esquinas casi rectas, líneas finas</span>
+    </div>
+  </div>
+  <div class="phones">
+    <figure><div class="phone and"><div class="scr B">
+      <div class="punch"></div>
+      <div class="sb"><span>14:37</span><span class="ic">5G <span class="bat low" style="--lv:14%"></span></span></div>
+      <div class="top"><span class="logo">Flashi <em>·</em></span><span class="lbl" style="white-space:nowrap">Socia #R-4471</span></div>
+      <div class="alert"><div><b>Alta demanda en tu zona</b>Si permanecés desconectada perderás prioridad para futuros pedidos.</div></div>
+      <div class="offer">
+        <span class="lbl">Nuevo pedido asignado</span>
+        <span class="amt num">$3.200</span>
+        <dl class="dl"><dt>Retiro</dt><dd>Burger Voraz</dd><dt>Entrega</dt><dd>Av. Rivadavia 4120, 7º B</dd><dt>Distancia</dt><dd>2,8 km · 14 min</dd></dl>
+      </div>
+      <div class="timer" data-cd="30"><div class="t"><span class="lbl">Tiempo para aceptar</span><span class="n num">00:30</span></div><div class="bar"><i></i></div></div>
+      <div class="btn">Aceptar</div>
+      <div class="fine">Rechazar este pedido afecta tu índice de prioridad durante 72 h.</div>
+    </div></div><figcaption>1 · Esc 11 · Oferta con cuenta regresiva</figcaption></figure>
+
+    <figure><div class="phone and"><div class="scr B">
+      <div class="punch"></div>
+      <div class="sb"><span>11:52</span><span class="ic">5G <span class="bat" style="--lv:48%"></span></span></div>
+      <div class="ftop">
+        <span class="lbl">Registro de desempeño · Pedido #88213</span>
+        <h3>Estuviste cerca, pero <em>no fue suficiente.</em></h3>
+        <p>¡Entregaste tarde! Será la próxima.</p>
+      </div>
+      <table>
+        <tr><td>Tiempo objetivo</td><td>00:01:00</td></tr>
+        <tr><td>Tiempo real</td><td class="bad">00:01:47</td></tr>
+        <tr><td>Bono por entrega</td><td class="bad"><s>$10.000</s> $0</td></tr>
+        <tr><td>Índice de puntualidad</td><td class="bad">71,4% (−2,3)</td></tr>
+      </table>
+      <p class="note">Este registro se considera para la asignación de pedidos de las próximas 72 horas. Flashi valora tu compromiso.</p>
+      <div class="ghost">Entendido</div>
+    </div></div><figcaption>2 · Esc 1 · Bono perdido</figcaption></figure>
+
+    <figure><div class="phone"><div class="scr B">
+      <div class="island"></div>
+      <div class="sb"><span>21:14</span><span class="ic">5G <span class="bat" style="--lv:64%"></span></span></div>
+      <div class="top"><span class="logo">Flashi <em>Eats</em></span><span class="lbl">Rivadavia 4120 ▾</span></div>
+      <div class="greet"><span class="lbl">Lunes · 21:14</span><h4>Hoy no cocines, <em>Clara.</em></h4></div>
+      <div class="promo">
+        <span class="lbl">Lunes de no cocinar</span>
+        <span class="amt num" style="display:block;margin-top:4px">$8.000</span>
+        <p>Te regalamos un cupón para tu snack favorito.</p>
+        <div class="exp"><span>Burger Voraz · último pedido</span><b class="num" data-exp="899">Vence en 14:59</b></div>
+        <div class="btn2">Pedir otra vez</div>
+      </div>
+      <div class="list">
+        <div>Heladería Polar<span>25 min · 4,6</span></div>
+        <div>Choco Bar 24 h<span>18 min · 4,4</span></div>
+      </div>
+      <div class="tabs"><span class="on">Inicio</span><span>Buscar</span><span>Pedidos</span><span>Perfil</span></div>
+    </div></div><figcaption>3 · Esc 7 · Cupón de $8.000</figcaption></figure>
+  </div>
+</section>
+
+<!-- ================= C ================= -->
+<section class="dir">
+  <div class="dhead">
+    <span class="dletter">C</span>
+    <h2>Alarma</h2>
+    <p>La app que te grita. Bloques de verde plano, rojo a pantalla completa, cintas de peligro y una tipografía condensada gigante. Los números ocupan la pantalla. Es la gamificación llevada al extremo: cada segundo es una emergencia.</p>
+    <div class="specs">
+      <span class="sw"><i style="background:#050806"></i><i style="background:#111713"></i><i style="background:#00D65B"></i><i style="background:#FF1B1B"></i><i style="background:#FFFFFF"></i></span>
+      <span>Anton (títulos y números) · Figtree (texto)</span>
+      <span>Esquinas rectas, bloques, cintas de peligro</span>
+    </div>
+  </div>
+  <div class="phones">
+    <figure><div class="phone and"><div class="scr C">
+      <div class="punch"></div>
+      <div class="sb"><span>14:37</span><span class="ic">5G <span class="bat low" style="--lv:14%"></span></span></div>
+      <div class="top"><span class="logo">FLASHI</span><span>RIDER · CONECTADA</span></div>
+      <div class="hz"><b>ALTA DEMANDA EN TU ZONA</b></div>
+      <div class="red" data-cd="30"><span class="n num">30</span><small>SEGUNDOS PARA ACEPTAR</small></div>
+      <div class="info">
+        <span class="k">BURGER VORAZ → RIVADAVIA 4120 <em>+$3.200</em></span>
+        <span class="m">2,8 km · 14 min · Si te desconectás, perdés prioridad.</span>
+      </div>
+      <div class="btn">ACEPTAR</div>
+      <div class="fine">SI NO ACEPTÁS, BAJÁS DE NIVEL</div>
+    </div></div><figcaption>1 · Esc 11 · Oferta con cuenta regresiva</figcaption></figure>
+
+    <figure><div class="phone and"><div class="scr C fail">
+      <div class="punch"></div>
+      <div class="sb"><span>11:52</span><span class="ic">5G <span class="bat" style="--lv:48%"></span></span></div>
+      <div class="big">¡TARDE!</div>
+      <div class="t2">¡Estuviste cerca pero no fue suficiente!</div>
+      <div class="loss"><span>BONO PERDIDO</span><s class="num">$10.000</s></div>
+      <div class="meter">PUNTUALIDAD 71% <i></i></div>
+      <div class="band">¡SERÁ LA PRÓXIMA!</div>
+    </div></div><figcaption>2 · Esc 1 · Bono perdido</figcaption></figure>
+
+    <figure><div class="phone"><div class="scr C">
+      <div class="island"></div>
+      <div class="sb"><span>21:14</span><span class="ic">5G <span class="bat" style="--lv:64%"></span></span></div>
+      <div class="top"><span class="logo">FLASHI EATS</span><span>HOLA, CLARA</span></div>
+      <div class="coupon">
+        <span class="tag num" data-exp="899">EXPIRA 14:59</span>
+        <br><small>¡LUNES DE NO COCINAR!</small>
+        <span class="amt num">$8.000</span>
+        <p>Aprovechá ahora y disfrutá de tu snack favorito.</p>
+      </div>
+      <div class="again"><span class="thumb"></span><div><b>Burger Voraz</b>Doble cheddar + papas</div><span class="go">PEDIR OTRA VEZ</span></div>
+      <div class="cats"><span>HAMBURGUESAS</span><span>SUSHI</span><span>HELADO</span></div>
+      <div class="tabs"><span class="on">Inicio</span><span>Buscar</span><span>Pedidos</span><span>Perfil</span></div>
+    </div></div><figcaption>3 · Esc 7 · Cupón de $8.000</figcaption></figure>
+  </div>
+</section>
+
+<footer>
+  <p><b>Cómo elegir.</b> Podés quedarte con una o combinar (por ejemplo, la estructura de A con la tipografía de B). Los textos del guion están literales; restaurantes, direcciones, montos del pedido e ID de rider son inventados y los ajustamos después.</p>
+  <p><b>Pantallas de bloqueo.</b> Imitan Android (María) e iOS (Clara), así que se ven casi iguales en las tres direcciones. Solo cambia el ícono de FLASHI dentro de la notificación.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  var cds=[].slice.call(document.querySelectorAll('[data-cd]'));
+  var exps=[].slice.call(document.querySelectorAll('[data-exp]'));
+  var t=30, e=899, hold=0;
+  function pad(n){return (n<10?'0':'')+n}
+  function tick(){
+    if(hold>0){hold--;}else{t--; if(t<0){t=30;} if(t===0){hold=2;}}
+    cds.forEach(function(el){
+      var n=el.querySelector('.n'); var p=(t/30)*100;
+      el.style.setProperty('--p',p);
+      var bi=el.querySelector('.bar i'); if(bi) bi.style.width=p+'%';
+      if(!n) return;
+      if(el.classList.contains('ring')) n.textContent='0:'+pad(t);
+      else if(el.classList.contains('red')) n.textContent=String(t);
+      else n.textContent='00:'+pad(t);
+    });
+    e=e>0?e-1:899;
+    var s=pad(Math.floor(e/60))+':'+pad(e%60);
+    exps.forEach(function(el){el.textContent=el.textContent.replace(/\d\d:\d\d/,s);});
+  }
+  setInterval(tick,1000);
+})();
+</script>

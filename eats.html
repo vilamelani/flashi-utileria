@@ -34,6 +34,8 @@
 }
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;background:#050807}
+/* iOS 26 instalado: 100% queda corto por el alto de la barra de estado y deja una franja abajo */
+@media (display-mode: standalone){html,body{height:100lvh}}
 body{overflow:hidden;overscroll-behavior:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation;font-family:var(--fb);color:var(--tx);-webkit-font-smoothing:antialiased}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
 #device{position:relative;width:100%;height:100%;overflow:hidden;background:var(--bg);isolation:isolate}
@@ -166,7 +168,7 @@ body.debugzones .hz{background:#ff00ff33;outline:1px dashed #f0f}
 @keyframes unl{to{transform:translateY(-100%);opacity:.6}}
 
 /* ================= MENÚ DE CONTROL (no aparece en cámara) ================= */
-#menu{position:absolute;inset:0;z-index:500;background:#101211;color:#EDEFEE;font-family:system-ui,-apple-system,Roboto,sans-serif;overflow-y:auto;-webkit-user-select:text;user-select:text;padding:calc(env(safe-area-inset-top,0px) + 14px) 16px calc(env(safe-area-inset-bottom,0px) + 30px);font-size:14px}
+#menu{position:absolute;inset:0;z-index:500;background:#101211;color:#EDEFEE;font-family:system-ui,-apple-system,Roboto,sans-serif;overflow-y:auto;-webkit-user-select:text;user-select:text;padding:calc(var(--sbh,0px) + 14px) 16px calc(env(safe-area-inset-bottom,0px) + 30px);font-size:14px}
 #menu h1{font-size:17px;margin:0;font-weight:800;letter-spacing:-.01em}
 #menu h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#8E9691;margin:22px 0 8px;font-weight:700}
 #menu .mh{display:flex;justify-content:space-between;align-items:center;gap:12px;position:sticky;top:calc(-14px - env(safe-area-inset-top,0px));background:#101211;padding:6px 0 10px;z-index:2}
@@ -270,8 +272,8 @@ body.debugzones .hz{background:#ff00ff33;outline:1px dashed #f0f}
 .arrived{color:var(--g)}
 .waiting{display:inline-flex;gap:6px;align-items:center;margin-top:8px;background:#FF2B4A22;color:#FF8A9A;border-radius:99px;padding:6px 11px;font-size:12.5px;font-weight:800}
 /* chat genérico (no es de FLASHI) */
-.chat{position:absolute;inset:0;display:flex;flex-direction:column;background:#0B0B0D;font-family:-apple-system,"SF Pro Text",system-ui,sans-serif;padding-top:var(--sbh)}
-.chat .ch{display:flex;align-items:center;gap:10px;padding:8px 14px 10px;background:#161618;border-bottom:1px solid #222}
+.chat{position:absolute;inset:0;display:flex;flex-direction:column;background:#0B0B0D;font-family:-apple-system,"SF Pro Text",system-ui,sans-serif}
+.chat .ch{display:flex;align-items:center;gap:10px;padding:calc(var(--sbh) + 8px) 14px 10px;background:#161618;border-bottom:1px solid #222}
 .chat .ch .bk{color:#4F8EF7;font-size:30px;line-height:1;font-weight:300;padding:0 4px}
 .chat .ch .av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#C98BB0,#7C4B7A);display:grid;place-items:center;font-weight:700;color:#fff}
 .chat .ch b{display:block;font-size:16px;font-weight:600;color:#fff}
@@ -372,7 +374,9 @@ window.FLASHI = function(app){
   function applyBar(){
     var vis=barVisible();
     dev.classList.toggle('hidebar',!vis);
-    var top = vis ? (app.platform==='ios'?'54px':'30px') : 'env(safe-area-inset-top, 0px)';
+    // iOS 26+: la barra de estado real aplica un desenfoque (efecto Liquid Glass) ~40pt por debajo
+    // del área segura. Con la barra real, bajamos el contenido para que no quede desenfocado.
+    var top = vis ? (app.platform==='ios'?'54px':'30px') : (app.platform==='ios'?'calc(env(safe-area-inset-top, 0px) + 42px)':'env(safe-area-inset-top, 0px)');
     dev.style.setProperty('--sbh',top);
     dev.style.setProperty('--tabpad', app.platform==='ios' ? (vis?'20px':'env(safe-area-inset-bottom, 0px)') : '0px');
     sbar.innerHTML=sbarHTML();

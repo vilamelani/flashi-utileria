@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>FLASHI · Celular de María</title>
+<meta name="description" content="GUITA · Episodio 4 · utilería digital para rodaje (celular de María)">
+<meta name="theme-color" content="#000000">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/flashi.css">
+<link rel="stylesheet" href="css/chat.css">
+<link rel="stylesheet" href="css/portal.css">
+</head>
+<body>
+  <div id="device" data-tone="light"></div>
+  <script src="js/config.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/flashi.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/portal.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/scenes.js"></script>
+  <script>
+    PHONE.boot();
+    if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+  </script>
+</body>
+</html>

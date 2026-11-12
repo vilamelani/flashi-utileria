@@ -1,0 +1,177 @@
+/* ================= FLASHI · núcleo (dirección A · Pulso) ================= */
+:root{
+  --bg:#060D09;--s1:#0E1A13;--s2:#16271D;--s3:#1F3528;--ln:#1B2E22;
+  --g:#1EF08A;--gd:#10B865;--gi:#03140A;--r:#FF2B4A;--rd:#B3142B;
+  --tx:#E9F4EE;--tx2:#C9D6CF;--mu:#7E958A;
+  --fd:Unbounded,system-ui,sans-serif;--fb:Manrope,system-ui,sans-serif;
+  --sbh:30px;--sbb:0px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:#050807}
+/* iOS 26 instalado: 100% queda corto por el alto de la barra de estado y deja una franja abajo */
+@media (display-mode: standalone){html,body{height:100lvh}}
+body{overflow:hidden;overscroll-behavior:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation;font-family:var(--fb);color:var(--tx);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+#device{position:relative;width:100%;height:100%;overflow:hidden;background:var(--bg);isolation:isolate}
+body.framed{display:grid;place-items:center;background:#171b19}
+body.framed #device{width:390px;height:min(844px,calc(100% - 40px));border-radius:46px;box-shadow:0 0 0 10px #0a0c0b,0 0 0 11px #2a302c,0 40px 80px -20px #000}
+body.framed.android #device{border-radius:34px}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- pantallas ---------- */
+.scr{position:absolute;inset:0;display:flex;flex-direction:column;padding-top:var(--sbh);padding-bottom:var(--sbb);overflow-y:auto;overflow-x:hidden;scrollbar-width:none;background:var(--bg)}
+.scr::-webkit-scrollbar{display:none}
+.scr>*:not(.map):not(.spacer){flex-shrink:0}
+.scr.enter{animation:scrIn .28s ease-out}
+@keyframes scrIn{from{opacity:.4;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ---------- barra de estado falsa ---------- */
+.sbar{position:absolute;top:0;left:0;right:0;height:var(--sbh);display:flex;align-items:center;justify-content:space-between;padding:0 20px;z-index:90;color:#fff;pointer-events:none;font-family:Roboto,"Google Sans",system-ui,sans-serif;font-size:13.5px;font-weight:500}
+.sbar .ic{display:flex;align-items:center;gap:6px}
+.sbar svg{display:block}
+.sbar .pct{font-size:12.5px}
+.ios .sbar{font-family:-apple-system,"SF Pro Text",system-ui,sans-serif;font-weight:600;font-size:16px;padding:6px 30px 0 34px;align-items:center}
+.ios .sbar .isl{position:absolute;left:50%;top:11px;transform:translateX(-50%);width:120px;height:34px;border-radius:20px;background:#000}
+.hidebar .sbar{display:none}
+
+/* ---------- zonas ocultas ---------- */
+.hz{position:absolute;z-index:200;background:transparent}
+.hz.menu{left:0;top:0;width:96px;height:calc(var(--sbh) + 52px)}
+.hz.cue{right:0;bottom:0;width:76px;height:76px}
+body.debugzones .hz{background:#ff00ff33;outline:1px dashed #f0f}
+
+/* ---------- elementos comunes app ---------- */
+.top{display:flex;justify-content:space-between;align-items:center;padding:10px 18px 8px;flex:none}
+.logo{font-family:var(--fd);font-weight:800;font-size:21px;letter-spacing:-.035em;display:flex;align-items:center;gap:0}
+.logo i{display:inline-block;width:8px;height:8px;background:var(--g);border-radius:50%;margin:8px 0 0 2px;box-shadow:0 0 12px var(--g)}
+.logo small{font-family:var(--fb);font-weight:700;font-size:11.5px;color:var(--mu);margin:6px 0 0 8px;letter-spacing:0}
+.chip{font-size:12px;font-weight:800;padding:7px 12px;border-radius:99px;background:#1EF08A1c;color:var(--g);display:inline-flex;align-items:center;gap:6px}
+.chip.off{background:#FF2B4A1f;color:var(--r)}
+.chip.neutral{background:var(--s2);color:var(--tx)}
+.dot{width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}
+.card{background:var(--s1);border-radius:20px;padding:14px 16px}
+.pad{padding:0 16px}
+.stack{display:flex;flex-direction:column;gap:10px}
+.lbl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mu)}
+.btn{display:block;width:100%;padding:17px;border-radius:18px;background:var(--g);color:var(--gi);font-weight:800;text-align:center;font-size:16px;box-shadow:0 10px 30px -10px #1EF08Aaa;transition:transform .1s}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;border:1.5px solid var(--g);color:var(--g);box-shadow:none}
+.btn.red{background:var(--r);color:#fff;box-shadow:0 10px 30px -10px #FF2B4Aaa}
+.btn.dim{background:var(--s2);color:var(--tx);box-shadow:none}
+.fine{text-align:center;font-size:12px;color:var(--mu)}
+.big{font-family:var(--fd);font-weight:800;letter-spacing:-.03em;line-height:1}
+.green{color:var(--g)} .red{color:var(--r)}
+.glowg{text-shadow:0 0 24px #1EF08A77} .glowr{text-shadow:0 0 24px #FF2B4A88}
+.spacer{flex:1 1 auto;min-height:12px}
+.tabs{display:flex;justify-content:space-around;padding:10px 6px calc(12px + var(--tabpad,0px));font-size:11px;font-weight:700;flex:none;border-top:1px solid var(--ln);background:var(--bg);position:sticky;bottom:0;margin-top:auto}
+.tabs span{display:flex;flex-direction:column;align-items:center;gap:5px;color:var(--mu)}
+.tabs span.on{color:var(--g)}
+.tabs svg{width:22px;height:22px}
+.alertbox{padding:12px 14px;border-radius:16px;background:linear-gradient(135deg,#FF2B4A33,#FF2B4A0d);border:1px solid #FF2B4A66;font-size:13px;line-height:1.45;color:var(--tx)}
+.alertbox b{display:block;color:var(--r);font-size:13.5px;margin-bottom:2px}
+.pulse-r{animation:pr 1s ease-in-out infinite}
+@keyframes pr{50%{opacity:.35}}
+
+/* ---------- mapa ---------- */
+.map{position:relative;flex:1 1 auto;min-height:260px;overflow:hidden;background:#07110B}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+.map .me{position:absolute;width:22px;height:22px;border-radius:50%;background:var(--g);border:4px solid #06140c;box-shadow:0 0 0 6px #1EF08A33,0 0 24px var(--g);transform:translate(-50%,-50%);transition:left 1.2s ease,top 1.2s ease}
+.map .pin{position:absolute;transform:translate(-50%,-100%);width:30px;height:40px}
+.map .me::after{content:"";position:absolute;inset:-14px;border-radius:50%;border:2px solid #1EF08A66;animation:ping 1.8s ease-out infinite}
+@keyframes ping{from{transform:scale(.5);opacity:1}to{transform:scale(1.6);opacity:0}}
+
+/* ---------- timers ---------- */
+.ring{--p:100;border-radius:50%;background:conic-gradient(var(--r) calc(var(--p)*1%),var(--s2) 0);display:grid;place-items:center;box-shadow:0 0 44px -8px #FF2B4Aaa}
+.ring>div{border-radius:50%;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.tbar{height:6px;border-radius:6px;background:#00000055;overflow:hidden}
+.tbar i{display:block;height:100%;width:calc(var(--p,100)*1%);background:#fff;border-radius:6px;transition:width .25s linear}
+.t-zero{animation:pr .8s ease-in-out infinite}
+
+/* ================= NOTIFICACIONES ================= */
+.hu{position:absolute;left:10px;right:10px;top:calc(var(--sbh) + 6px);z-index:120;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.hu>*{pointer-events:auto;animation:huIn .38s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes huIn{from{transform:translateY(-130%);opacity:0}to{transform:none;opacity:1}}
+.hu>.out{animation:huOut .25s ease-in forwards}
+@keyframes huOut{to{transform:translateY(-130%);opacity:0}}
+/* Android */
+.nA{background:#262A28;border-radius:26px;padding:14px 16px 15px;display:grid;grid-template-columns:30px 1fr;column-gap:12px;row-gap:3px;color:#E6E9E7;font-family:Roboto,"Google Sans",system-ui,sans-serif;box-shadow:0 8px 30px -6px #000c}
+.nA .ai{grid-row:span 3;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--g);color:#06140c}
+.nA.hot .ai{background:var(--r);color:#fff}
+.nA .ai svg{width:18px;height:18px}
+.nA .hd{font-size:12.5px;color:#B8C0BB;display:flex;gap:5px;align-items:center}
+.nA .hd b{font-weight:500;color:var(--g)}
+.nA.hot .hd b{color:#FF7A8C}
+.nA .tt{font-size:15px;font-weight:600;color:#fff;line-height:1.3}
+.nA .bd{font-size:14.5px;line-height:1.38;color:#DDE3DF}
+/* iOS */
+.nI{background:rgba(52,52,54,.72);-webkit-backdrop-filter:blur(26px) saturate(170%);backdrop-filter:blur(26px) saturate(170%);border-radius:24px;padding:13px 15px 14px;display:grid;grid-template-columns:40px 1fr;column-gap:11px;color:#fff;font-family:-apple-system,"SF Pro Text",system-ui,sans-serif;box-shadow:0 10px 30px -8px #0009}
+.nI .ai{grid-row:span 3;width:40px;height:40px;border-radius:10px;overflow:hidden;align-self:start}
+.nI .ai svg{width:40px;height:40px;display:block}
+.nI .hd{display:flex;justify-content:space-between;font-size:15px}
+.nI .hd b{font-weight:600}
+.nI .hd span{color:#ffffff8c;font-size:14px}
+.nI .tt{font-size:15px;font-weight:600;line-height:1.3}
+.nI .bd{font-size:15px;line-height:1.33;color:#fff}
+
+/* ================= BLOQUEO ANDROID ================= */
+.lockA{position:absolute;inset:0;z-index:80;display:flex;flex-direction:column;background:var(--wall,radial-gradient(120% 70% at 20% 0%,#16362A 0%,#08130E 55%,#050907 100%));background-size:cover;background-position:center;color:#E3F1E8;font-family:Roboto,"Google Sans",system-ui,sans-serif;padding-top:var(--sbh);overflow:hidden}
+.lockA::before{content:"";position:absolute;inset:0;background:#0000002e;pointer-events:none}
+.lockA>*{position:relative}
+.lockA .date{padding:22px 26px 0;font-size:16px;font-weight:500;display:flex;justify-content:space-between;color:#D6E8DC}
+.lockA .clock{padding:6px 26px 0;font-size:104px;line-height:.98;font-weight:400;letter-spacing:-2px;color:#CFF3DC;display:flex;flex-direction:column}
+.lockA .nl{padding:26px 12px 0;display:flex;flex-direction:column;gap:8px;overflow:hidden}
+.lockA .nl .nA{background:#1E2320e8;animation:huIn .38s cubic-bezier(.2,.9,.3,1.2)}
+.lockA .foot{margin-top:auto;padding:0 26px calc(22px + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;align-items:flex-end}
+.lockA .sc{width:56px;height:56px;border-radius:50%;background:#ffffff1f;display:grid;place-items:center}
+.lockA .fp{display:flex;flex-direction:column;align-items:center;gap:10px;font-size:12.5px;color:#C9DBD0}
+.lockA .fp svg{width:30px;height:30px}
+
+/* ================= BLOQUEO iOS ================= */
+.lockI{position:absolute;inset:0;z-index:80;display:flex;flex-direction:column;align-items:center;background:var(--wall,linear-gradient(180deg,#0E2A1E 0%,#0A1B14 40%,#050A08 100%));background-size:cover;background-position:center;color:#fff;font-family:-apple-system,"SF Pro Display",system-ui,sans-serif;padding-top:var(--sbh);overflow:hidden}
+.lockI::before{content:"";position:absolute;inset:0;background:linear-gradient(#0000001a,#0000 40%,#00000066);pointer-events:none}
+.lockI>*{position:relative}
+.lockI .lk{margin-top:10px;width:18px;height:22px;opacity:.95}
+.lockI .date{margin-top:8px;font-size:20px;font-weight:600;letter-spacing:.2px;opacity:.9}
+.lockI .clock{font-size:96px;font-weight:600;line-height:1;letter-spacing:-1px;margin-top:2px;font-feature-settings:"tnum"}
+.lockI .nl{width:100%;padding:0 10px;display:flex;flex-direction:column;gap:8px;margin-top:auto;margin-bottom:26px}
+.lockI .nl .nI{animation:huIn .38s cubic-bezier(.2,.9,.3,1.2)}
+.lockI .foot{width:100%;display:flex;justify-content:space-between;padding:0 46px 12px}
+.lockI .sc{width:50px;height:50px;border-radius:50%;background:#ffffff26;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);display:grid;place-items:center}
+.lockI .hbar{width:136px;height:5px;border-radius:3px;background:#fff;margin:4px 0 calc(8px + env(safe-area-inset-bottom,0px))}
+.unlocking{animation:unl .32s ease-in forwards}
+@keyframes unl{to{transform:translateY(-100%);opacity:.6}}
+
+/* ================= MENÚ DE CONTROL (no aparece en cámara) ================= */
+#menu{position:absolute;inset:0;z-index:500;background:#101211;color:#EDEFEE;font-family:system-ui,-apple-system,Roboto,sans-serif;overflow-y:auto;-webkit-user-select:text;user-select:text;padding:calc(var(--sbh,0px) + 14px) 16px calc(env(safe-area-inset-bottom,0px) + 30px);font-size:14px}
+#menu h1{font-size:17px;margin:0;font-weight:800;letter-spacing:-.01em}
+#menu h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#8E9691;margin:22px 0 8px;font-weight:700}
+#menu .mh{display:flex;justify-content:space-between;align-items:center;gap:12px;position:sticky;top:calc(-14px - env(safe-area-inset-top,0px));background:#101211;padding:6px 0 10px;z-index:2}
+#menu .x{font-size:14px;font-weight:700;padding:9px 14px;border-radius:10px;background:#242826}
+#menu .scn{display:flex;flex-direction:column;gap:6px}
+#menu .scn button{text-align:left;padding:11px 13px;border-radius:12px;background:#1A1D1C;border:1px solid #262A28;display:flex;flex-direction:column;gap:3px}
+#menu .scn button b{font-size:14.5px}
+#menu .scn button span{font-size:12.5px;color:#9BA39E;line-height:1.35}
+#menu .scn button.sel{border-color:#1EF08A;background:#13241B}
+#menu .cues{display:flex;flex-direction:column;gap:6px;counter-reset:c}
+#menu .cue{background:#1A1D1C;border:1px solid #262A28;border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+#menu .cue .row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+#menu .cue .row b{font-size:13.5px;font-weight:600}
+#menu .cue .row b::before{counter-increment:c;content:counter(c) " · ";color:#1EF08A}
+#menu .cue.next{border-color:#1EF08A88}
+#menu .cue button{font-size:12.5px;font-weight:700;padding:7px 11px;border-radius:9px;background:#2A2F2C;white-space:nowrap}
+#menu textarea,#menu input[type=text],#menu input[type=time],#menu input[type=number]{width:100%;background:#0B0D0C;border:1px solid #2E3431;border-radius:9px;color:#fff;padding:9px 10px;font:14px/1.4 system-ui,sans-serif}
+#menu textarea{min-height:58px;resize:vertical}
+#menu .f{display:grid;grid-template-columns:1fr 1.2fr;gap:8px 12px;align-items:center}
+#menu .f label{color:#B5BCB8;font-size:13px}
+#menu .seg{display:flex;background:#0B0D0C;border:1px solid #2E3431;border-radius:10px;padding:3px;gap:3px}
+#menu .seg button{flex:1;padding:7px 6px;border-radius:7px;font-size:12.5px;font-weight:700;color:#B5BCB8}
+#menu .seg button.on{background:#1EF08A;color:#04130A}
+#menu .go{margin-top:18px;width:100%;padding:16px;border-radius:14px;background:#1EF08A;color:#04130A;font-weight:900;font-size:16px}
+#menu .sm{font-size:12.5px;color:#8E9691;line-height:1.5}
+#menu .help{background:#1A1D1C;border-radius:12px;padding:12px 14px;line-height:1.55;font-size:13px;color:#C9CFCB}
+#menu .help b{color:#fff}
+#menu .row2{display:flex;gap:8px;flex-wrap:wrap}
+#menu .row2 button{padding:9px 12px;border-radius:10px;background:#242826;font-weight:700;font-size:13px}
+#menu .now{font-size:12.5px;color:#1EF08A;margin-top:4px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition:none!important}}

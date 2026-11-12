@@ -1,0 +1,99 @@
+/* ===== FLASHI EATS (Clara) ===== */
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--s2);display:grid;place-items:center;font-weight:800;font-size:14px}
+.loc{padding:0 18px 4px;font-size:12px;color:var(--mu);font-weight:600}
+.loc b{display:block;color:var(--tx);font-size:15px;margin-top:2px;font-weight:800}
+.deliv{margin:12px 16px 0;border-radius:22px;padding:16px;background:var(--s1);border:1px solid #1EF08A33;display:flex;flex-direction:column;gap:12px}
+.deliv .r{display:flex;gap:12px;align-items:center}
+.deliv .ok{width:40px;height:40px;border-radius:50%;background:#1EF08A22;display:grid;place-items:center;flex:none;color:var(--g)}
+.deliv b{display:block;font-size:15px}
+.deliv span{font-size:12.5px;color:var(--mu)}
+.promo{margin:12px 16px 0;padding:18px;border-radius:26px;background:radial-gradient(90% 90% at 100% 0%,#1EF08A55,transparent 60%),linear-gradient(160deg,#10301E,#0A1710);border:1px solid #1EF08A33;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:4px}
+.promo .tag{align-self:flex-start;font-size:12px;font-weight:800;color:#fff;background:var(--r);padding:6px 11px;border-radius:99px;box-shadow:0 0 20px #FF2B4Aaa;margin-bottom:6px}
+.promo h4{font-family:var(--fd);font-weight:800;font-size:22px;margin:4px 0 0;line-height:1.1;letter-spacing:-.03em}
+.promo .big{font-size:50px;color:var(--g);text-shadow:0 0 26px #1EF08A77;margin:4px 0}
+.promo p{font-size:13.5px;color:var(--tx2);margin:0 0 10px;line-height:1.4}
+.promo.soft{background:linear-gradient(160deg,#122A1D,#0B1711)}
+.promo.soft h4{font-size:18px}
+.last{margin:12px 16px 0;padding:12px;border-radius:20px;background:var(--s1);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.thumb{width:52px;height:52px;border-radius:14px;flex:none;background:radial-gradient(circle at 35% 35%,#E8A34A,#7A3A12)}
+.th2{background:radial-gradient(circle at 35% 35%,#F2D6E6,#B0507F)}
+.th3{background:radial-gradient(circle at 35% 35%,#6B3A22,#2A140B)}
+.th4{background:radial-gradient(circle at 35% 35%,#F4C95D,#B23A1E)}
+.last div{flex:1;min-width:0;font-size:12.5px;color:var(--mu);line-height:1.35}
+.last div b{display:block;color:var(--tx);font-size:15px}
+.sbtn{flex-basis:100%;text-align:center;padding:12px;border-radius:14px;background:var(--g);color:var(--gi);font-weight:800;font-size:14px;box-shadow:0 8px 24px -10px #1EF08Aaa}
+.sect{padding:18px 18px 8px;font-family:var(--fd);font-weight:700;font-size:16px;letter-spacing:-.02em}
+.cats{display:flex;gap:8px;padding:12px 16px 0;overflow-x:auto;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.cats span{font-size:13px;font-weight:700;padding:9px 13px;border-radius:99px;background:var(--s2);white-space:nowrap}
+.rlist{display:flex;flex-direction:column;gap:2px;padding:0 16px}
+.rlist div{display:flex;gap:12px;align-items:center;padding:8px 0}
+.rlist .thumb{width:46px;height:46px;border-radius:12px}
+.rlist p{margin:0;flex:1;font-size:12.5px;color:var(--mu)}
+.rlist p b{display:block;color:var(--tx);font-size:14.5px}
+.rlist em{font-style:normal;font-size:11.5px;font-weight:800;color:var(--g);background:#1EF08A1a;padding:4px 8px;border-radius:99px}
+/* calificación */
+.hdr{display:flex;align-items:center;gap:10px;padding:8px 16px 10px}
+.hdr .bk{width:38px;height:38px;border-radius:50%;background:var(--s2);display:grid;place-items:center;font-size:22px;font-weight:700;line-height:1}
+.hdr h2{margin:0;font-size:18px;font-weight:800}
+.ordc{margin:4px 16px 0;display:flex;gap:12px;align-items:center}
+.ordc div{flex:1;font-size:12.5px;color:var(--mu);line-height:1.4}
+.ordc div b{display:block;color:var(--tx);font-size:15px}
+.q{padding:22px 18px 8px;font-family:var(--fd);font-weight:700;font-size:19px;letter-spacing:-.02em;text-align:center}
+.stars{display:flex;justify-content:center;gap:10px;padding:6px 0 4px}
+.stars button{width:46px;height:46px;color:var(--s3)}
+.stars button.on{color:#FFB020;filter:drop-shadow(0 0 10px #FFB02088)}
+.stars svg{width:100%;height:100%}
+.slabel{text-align:center;font-size:13px;color:var(--mu);font-weight:700;min-height:18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:14px 16px 0;justify-content:center}
+.chips button{padding:10px 14px;border-radius:99px;background:var(--s2);font-size:13.5px;font-weight:700;border:1.5px solid transparent}
+.chips button.on{background:#FF2B4A22;border-color:var(--r);color:#fff}
+.sum{margin:16px 16px 0;display:flex;flex-direction:column;gap:10px}
+.sum .r{display:flex;justify-content:space-between;font-size:14px}
+.sum .r span{color:var(--tx2)}
+.sum .tot{border-top:1px solid var(--ln);padding-top:10px;font-weight:800;font-size:16px}
+.sum .tot b{font-family:var(--fd)}
+/* seguimiento */
+.eta{padding:4px 18px 0}
+.eta .big{font-size:44px;margin-top:4px}
+.eta .sub{font-size:13px;color:var(--tx2);margin-top:6px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:14px 18px 12px}
+.steps i{height:5px;border-radius:3px;background:var(--s2)}
+.steps i.on{background:var(--g);box-shadow:0 0 10px #1EF08A99}
+.steps i.now{animation:pr 1.2s ease-in-out infinite}
+.rider{display:flex;gap:12px;align-items:center}
+.rider .avatar{width:48px;height:48px;background:linear-gradient(135deg,#1EF08A,#0B5F35);color:var(--gi);font-size:18px}
+.rider div{flex:1;font-size:12.5px;color:var(--mu)}
+.rider div b{display:block;color:var(--tx);font-size:16px}
+.rider em{font-style:normal;font-weight:800;color:#FFB020;font-size:13px}
+.arrived{color:var(--g)}
+.waiting{display:inline-flex;gap:6px;align-items:center;margin-top:8px;background:#FF2B4A22;color:#FF8A9A;border-radius:99px;padding:6px 11px;font-size:12.5px;font-weight:800}
+/* chat genérico (no es de FLASHI) */
+.chat{position:absolute;inset:0;display:flex;flex-direction:column;background:#0B0B0D;font-family:-apple-system,"SF Pro Text",system-ui,sans-serif}
+.chat .ch{display:flex;align-items:center;gap:10px;padding:calc(var(--sbh) + 8px) 14px 10px;background:#161618;border-bottom:1px solid #222}
+.chat .ch .bk{color:#4F8EF7;font-size:30px;line-height:1;font-weight:300;padding:0 4px}
+.chat .ch .av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#C98BB0,#7C4B7A);display:grid;place-items:center;font-weight:700;color:#fff}
+.chat .ch b{display:block;font-size:16px;font-weight:600;color:#fff}
+.chat .ch span{font-size:12.5px;color:#8E8E93}
+.chat .body{flex:1;overflow:auto;padding:14px 12px;display:flex;flex-direction:column;gap:8px;background:#0B0B0D}
+.chat .day{align-self:center;font-size:12px;color:#8E8E93;background:#1C1C1E;padding:4px 10px;border-radius:9px;margin:6px 0}
+.chat .m{max-width:78%;padding:8px 11px 6px;border-radius:17px;font-size:15.5px;line-height:1.32;color:#fff;position:relative}
+.chat .m small{display:block;text-align:right;font-size:11px;color:#ffffff88;margin-top:2px}
+.chat .in{align-self:flex-start;background:#26252A;border-bottom-left-radius:5px}
+.chat .out{align-self:flex-end;background:#2B5CD8;border-bottom-right-radius:5px}
+.chat .aud{display:flex;align-items:center;gap:10px;min-width:240px;padding:9px 11px 6px}
+.chat .play{width:36px;height:36px;border-radius:50%;background:#ffffff1f;display:grid;place-items:center;flex:none}
+.chat .wave{display:flex;align-items:center;gap:2px;height:28px;flex:1}
+.chat .wave i{width:3px;border-radius:2px;background:#ffffff55;flex:none}
+.chat .wave i.p{background:#fff}
+.chat .adur{font-size:12px;color:#ffffffaa;min-width:30px}
+.chat .inp{display:flex;align-items:center;gap:10px;padding:8px 12px calc(10px + var(--tabpad,0px));background:#161618;border-top:1px solid #222}
+.chat .inp span{flex:1;background:#0B0B0D;border:1px solid #2C2C2E;border-radius:20px;padding:8px 14px;color:#6D6D72;font-size:15px}
+.chat .inp i{width:34px;height:34px;border-radius:50%;background:#2C2C2E;display:grid;place-items:center}
+/* compartidos con Delivery */
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 16px 0}
+.acts span{background:var(--s2);border-radius:14px;padding:11px;text-align:center;font-weight:700;font-size:13px}
+.sheet{background:var(--s1);border-radius:26px 26px 0 0;padding:16px 16px calc(18px + var(--tabpad,0px));display:flex;flex-direction:column;gap:6px;margin-top:-22px;position:relative;z-index:2;flex:none}
+.sheet .grab{width:40px;height:4px;border-radius:2px;background:var(--s3);align-self:center;margin-bottom:4px}
+.sheet .meta{font-size:12.5px;color:var(--mu)}
+.bottom{display:flex;flex-direction:column;gap:10px}
