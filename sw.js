@@ -1,5 +1,5 @@
 /* Service worker de la raíz: guarda la página de inicio y FLASHI EATS (Clara) para que funcionen sin conexión.
-   El celular de María tiene el suyo propio en delivery/sw.js (no se pisan).
+   El celular de María tiene el suyo propio en maria/sw.js (no se pisan).
    Si se cambia algún archivo de acá, subir la VERSION. */
 const VERSION = 'flashi-eats-v2';
 const ASSETS = ['./', './index.html', './eats.html', './eats.webmanifest', './eats-192.png', './eats-512.png', './eats-apple.png', './delivery.html'];
@@ -10,6 +10,6 @@ self.addEventListener('activate', (e) => {
 });
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
-  if (new URL(e.request.url).pathname.includes('/delivery/')) return;   // eso lo maneja delivery/sw.js
+  if (new URL(e.request.url).pathname.includes('/maria/')) return;   // eso lo maneja maria/sw.js
   e.respondWith(caches.match(e.request, { ignoreSearch: true }).then((r) => r || fetch(e.request)));
 });

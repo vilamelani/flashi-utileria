@@ -5,10 +5,10 @@ Se publican con GitHub Pages desde la raíz: `https://vilamelani.github.io/flash
 
 | Ruta | Qué es | Celular |
 |---|---|---|
-| `delivery/` | **Celular de María**: un Android falso entero con FLASHI Delivery, Chat, Portal, llamadas, bloqueo e inicio | Android, Chrome, instalada |
+| `maria/` | **Celular de María**: un Android falso entero con FLASHI Delivery, Chat, Portal, llamadas, bloqueo e inicio | Android, Chrome, instalada |
 | `eats.html` | **FLASHI EATS**, app de Clara (versión 1, todavía sin migrar) | iPhone 15 Pro, Safari, instalada |
 | `index.html` | Página de inicio con links | — |
-| `delivery.html` | Redirección a `delivery/` (el link viejo) | — |
+| `delivery.html` | Redirección a `maria/` (el link viejo) | — |
 | `archivo/fuente-v1/` | Fuente de la versión 1 (build en un solo archivo). Se usa sólo para migrar EATS. **No correr su `build.py`**: pisaría la raíz. | — |
 
 ## Cómo trabajar con Mel
@@ -18,10 +18,10 @@ Se publican con GitHub Pages desde la raíz: `https://vilamelani.github.io/flash
 - Mensajería, llamadas e Instagram **se arman en la app** (decisión del 12/11/2026; antes iban en post).
 
 ## Estructura (igual que PORTAL / postal-utileria): sin build
-Se edita directo y se publica con `git push`. **Al cambiar cualquier archivo de `delivery/`, subir `VERSION` en `delivery/sw.js`** (los celulares toman la actualización al abrir la app con internet, cerrarla y volver a abrirla).
+Se edita directo y se publica con `git push`. **Al cambiar cualquier archivo de `maria/`, subir `VERSION` en `maria/sw.js`** (los celulares toman la actualización al abrir la app con internet, cerrarla y volver a abrirla).
 
 ```
-delivery/
+maria/
   index.html  manifest.webmanifest  sw.js
   css/app.css      sistema: barra de estado, rayita, bloqueo, notificaciones, llamadas, inicio, pantalla de equipo, menú
   css/flashi.css   FLASHI (todo bajo .app-flashi)   css/chat.css   css/portal.css

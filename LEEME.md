@@ -1,6 +1,6 @@
 # GUITA · Episodio 4 · Utilería digital FLASHI
 
-## Celular de María (Android) · `delivery/`
+## Celular de María (Android) · `maria/`
 
 Un Android falso completo: pantalla bloqueada, inicio, llamadas, **FLASHI Delivery**, **Chat** (genérico, sin logo de WhatsApp) y **Portal** (la app tipo Instagram). Así en una misma toma se puede pasar de una app a otra y las notificaciones de FLASHI aparecen encima de cualquier app.
 
@@ -31,7 +31,7 @@ Textos: conversaciones del chat, nombres y números de contactos, perfil de Port
 Todo queda guardado en ese celular. “Volver a la configuración original” lo borra.
 
 ### Instalar en el Android de María
-1. Con internet, abrir en Chrome `https://vilamelani.github.io/flashi-utileria/delivery/`.
+1. Con internet, abrir en Chrome `https://vilamelani.github.io/flashi-utileria/maria/`.
 2. Menú ⋮ → “Instalar app” (o “Agregar a la pantalla principal”). Abrir desde el ícono **FLASHI**.
 3. En la lista de escenas tiene que decir **Sin conexión: lista**. Desde ahí funciona sin internet.
 4. Si antes estaba instalada la versión vieja (delivery.html), borrarla e instalar esta.

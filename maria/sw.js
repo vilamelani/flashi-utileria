@@ -1,7 +1,7 @@
 /* Guarda toda la app en el celular para que funcione sin conexión.
    Si se cambia algún archivo, subir el número de VERSION para que los celulares se actualicen
    (abrir la app con internet, cerrarla del todo y volver a abrirla). */
-const VERSION = 'flashi-maria-v1';
+const VERSION = 'flashi-maria-v2';
 const ASSETS = [
   './', 'index.html', 'manifest.webmanifest',
   'css/app.css', 'css/flashi.css', 'css/chat.css', 'css/portal.css',
