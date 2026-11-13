@@ -174,3 +174,11 @@
 .app-flashi .lg{width:48px;height:48px;border-radius:14px;background:#fff center/cover no-repeat;flex:none;box-shadow:0 0 0 2px var(--s3)}
 .app-flashi .sheet .who{display:flex;align-items:center;gap:12px}
 .app-flashi .sheet .who>div{display:flex;flex-direction:column;gap:2px}
+
+/* cuenta regresiva de la oferta (52): círculo oscuro con borde rojo que titila */
+.app-flashi .cdwrap{display:flex;justify-content:center;padding:22px 0 18px}
+.app-flashi .cd{width:176px;height:176px;border-radius:50%;background:var(--s1);border:4px solid var(--r);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;animation:cdBlink 1s ease-in-out infinite}
+.app-flashi .cd .rt{font-family:var(--fd);font-weight:800;font-size:46px;color:var(--r);letter-spacing:-.03em;line-height:1}
+.app-flashi .cd small{font-size:12.5px;color:var(--mu);font-weight:700}
+.app-flashi .cd .t-zero{animation:none}
+@keyframes cdBlink{0%,100%{border-color:var(--r);box-shadow:0 0 34px -4px #FF2B4Acc,inset 0 0 18px -6px #FF2B4A99}50%{border-color:#5a1420;box-shadow:0 0 0 0 #FF2B4A00,inset 0 0 0 0 #FF2B4A00}}

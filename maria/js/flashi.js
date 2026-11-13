@@ -124,7 +124,7 @@
             '<div class="spacer"></div><div class="bottom"><button class="btn" data-act="accept">Aceptar pedido</button><button class="fine" data-act="reject">Rechazar: perdés el bono</button></div>';
         }
         return top(A) + '<div class="pad"><div class="alertbox"><b>Alta demanda en tu zona</b>Si permanecés desconectada perderás prioridad para futuros pedidos.</div></div>' +
-          '<div class="ringwrap"><div class="ring lg" data-tp><div><span class="rt num" data-t="m">0:30</span><small>para aceptar</small></div></div></div>' + card +
+          '<div class="cdwrap"><div class="cd"><span class="rt num" data-t="m">0:30</span><small>para aceptar</small></div></div>' + card +
           '<div class="spacer"></div><div class="bottom"><button class="btn" data-act="accept">Aceptar pedido</button><button class="fine" data-act="reject">Rechazar resta 15 puntos de prioridad</button></div>';
       },
       success(A) {
