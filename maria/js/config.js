@@ -33,8 +33,12 @@ window.MARIA_DEFAULTS = {
     riderId: '#R-4471',              // [INVENTADO]
     cliente: 'Clara M.',             // [INVENTADO] apellido
     dirCliente: 'Av. Rivadavia 4120, 7º B', // [INVENTADO]
-    local: 'Burger Voraz',           // [INVENTADO]
-    localDir: 'Hidalgo 612',         // [INVENTADO]
+    local: "Timmy's",                // pedido de Clara (44) y oferta del bono (55)
+    localSub: 'Hamburguesas Smash',
+    localDir: 'Laprida 2542',
+    local2: 'Giandutti',             // oferta de la 52
+    local2Sub: 'Chocolates',         // [INVENTADO] rubro que se muestra debajo del nombre
+    local2Dir: 'Av. Pueyrredón 1527',
     dirOferta: 'Av. La Plata 890, 3º A', // [INVENTADO] dirección del pedido que acepta en la 52 y la 55
     pedido: '#88213',                // [INVENTADO]
     montoOferta: '$3.200',           // [INVENTADO] lo que paga el pedido ofrecido
@@ -75,8 +79,9 @@ window.MARIA_DEFAULTS = {
     //   "10:00 texto"  → mensaje recibido a esa hora
     //   "> 10:05 texto" → mensaje enviado por María
     //   "-- ayer"       → separador de día
+    //   "!! texto"      → aviso del sistema (centrado), ej.: mensajes temporales
     threads: {
-      gloria: '-- hoy\n10:00 Nena, el alquiler?',
+      gloria: '!! Los mensajes temporales están activados. Los mensajes nuevos desaparecen de este chat 24 horas después de enviarse.\n-- hoy\n10:00 Nena, el alquiler?',   // aviso [INVENTADO]
       daniel: '-- martes\n19:12 Atendeme María. Conseguí un trabajo mejor. ¿Podemos intentarlo?\n-- ayer\n21:40 María por favor atendeme\n21:41 Te llamé 3 veces',   // 1ª línea: Ep. 1, esc. 9F. Lo demás [INVENTADO]
       clara: ''
     },
@@ -85,6 +90,7 @@ window.MARIA_DEFAULTS = {
       'Riders Almagro | Lucas: alguien sabe si está andando la app? | ayer',
       'Vero | jajaja dale, después te cuento | lunes'
     ],
+    notifWhen: 'ahora',   // qué hora muestra la notificación de Gloria en la 46 ('ahora', '10:00'…)
     typeText: 'Hola Daniel, necesito pedirte algo…',   // lo que escribe y borra en la 55
     typeSpeed: 9,                                        // letras por segundo cuando se escribe solo
     eraseAfter: 2.5                                      // segundos antes de borrar solo
@@ -107,21 +113,23 @@ window.MARIA_DEFAULTS = {
       comments: '86',               // [INVENTADO]
       when: '3 de noviembre'        // [INVENTADO]
     },
-    savedCount: 6                   // cuántas publicaciones hay en Guardado (la cuna + otras provisorias)
+    cunaPos: 4,                     // en qué lugar de Guardado aparece la cuna (1 = primera)
+    // Publicaciones fijas de Guardado (recortadas de las capturas que pasó Mel), en este orden
+    savedImages: ['s-postres', 's-bebe', 's-perro', 's-esposo', 's-mate', 's-piel', 's-historias', 's-calabacines', 's-agenda', 's-budin', 's-bilardo', 's-vitaminac', 's-pancitos', 's-tipografias']
   },
 
   /* ---------------- Escenas ----------------
      Por escena: hora, batería, dónde arranca y cuándo se disparan solos los momentos.
      delays: segundos para disparar cada momento solo (0 = sólo a mano: doble toque abajo a la derecha). */
   scenes: {
-    '44':  { time: '12:58', batt: 48, start: 'app',  date: '', dur: 60, run: 'pause', onZero: 'next', delays: [0, 0] },
-    '46':  { time: '22:00', batt: 23, start: 'app',  date: '', delays: [0, 0] },
+    '44':  { time: '12:58', batt: 48, start: 'app',  date: '', dur: 60, run: 'run', onZero: 'next', delays: [0, 0] },
+    '46':  { time: '22:00', batt: 23, start: 'lock', date: '', delays: [0, 0, 0] },
     '47':  { time: '10:41', batt: 71, start: 'call', date: '', delays: [] },
     '48':  { time: '13:07', batt: 37, start: 'lock', date: '', delays: [0, 0] },
     '52':  { time: '14:37', batt: 14, start: 'lock', date: '', dur: 30, delays: [0, 0, 0, 0] },
     '55':  { time: '23:05', batt: 9,  start: 'app',  date: '', delays: [0, 0] },
-    '55B': { time: '23:07', batt: 9,  start: 'app',  date: '', delays: [0, 0] },
-    '59':  { time: '14:40', batt: 31, start: 'app',  date: '', delays: [0, 0, 0, 0] },
+    '55B': { time: '23:07', batt: 9,  start: 'app',  date: '', delays: [0, 0] },   // arranca en el inicio del celular
+    '59':  { time: '14:40', batt: 31, start: 'lock', date: '', delays: [0, 0, 0, 0] },
     'libre': { time: '17:45', batt: 52, start: 'app', date: '', delays: [] }
   }
 };

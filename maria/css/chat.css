@@ -43,9 +43,12 @@
 .cm-box { flex: 1; min-height: 48px; border-radius: 24px; background: #1F2A31; display: flex; align-items: center; padding: 0 4px; }
 .cm-box .ic { width: 40px; height: 40px; color: #8D9AA2; }
 .cm-text { flex: 1; min-width: 0; font-size: 16.5px; color: #F2F5F7; padding: 12px 0; line-height: 1.3; word-break: break-word; }
+.cm-text .caret { display: none; vertical-align: -4px; }
+.th.typing .cm-text .caret { display: inline-block; }
+.th.typing .cm-text.ph .cm-t { display: none; }
+.th.typing .cm-text.ph::after { content: 'Mensaje'; }
 .cm-text.ph { color: #7E8B93; }
-.caret { width: 2px; height: 22px; background: #5B8CFF; margin-left: 1px; animation: blink 1s steps(1) infinite; display: none; }
-.th.typing .caret { display: block; }
+.caret { width: 2px; height: 21px; background: #5B8CFF; margin-left: 1px; animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 .cm-btn { width: 48px; height: 48px; border-radius: 50%; background: #5B8CFF; color: #fff; display: grid; place-items: center; flex: none; }
 .cm-btn svg { width: 22px; height: 22px; }
@@ -61,3 +64,7 @@
 .k.space { flex: 4.6; font-size: 14px; color: #AEB6BB; }
 .k svg { width: 22px; height: 22px; }
 .k.pr { background: #5A6166; }
+
+.sys { display: flex; justify-content: center; margin: 6px 8px 4px; }
+.sys span { background: #1B252C; color: #C9D2D8; font-size: 12.5px; line-height: 1.4; padding: 7px 12px; border-radius: 8px; text-align: center; max-width: 92%; }
+.sys .tmr { width: 13px !important; height: 13px !important; display: inline-block; vertical-align: -2px; margin-right: 5px; stroke-width: 2.2 !important; }

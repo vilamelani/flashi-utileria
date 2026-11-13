@@ -76,7 +76,9 @@
     }
   }
   const PH = {};   // fotos provisorias generadas
-  function img(slot) { return imgURL[slot] || placeholder(slot); }
+  // Fotos que vienen con la app (se pueden reemplazar desde el menú)
+  const DEFAULT_IMG = { local1: 'img/locales/timmys.png', local2: 'img/locales/giandutti.jpg' };
+  function img(slot) { return imgURL[slot] || DEFAULT_IMG[slot] || (/^s-/.test(slot) ? `img/guardado/${slot}.jpg` : placeholder(slot)); }
   function hasImg(slot) { return !!imgURL[slot]; }
 
   /* Fotos provisorias dibujadas (para que nunca quede un cuadrado vacío) */
@@ -275,13 +277,14 @@
     const a = APPS[n.app] || {};
     return `<div class="nA${n.urgent ? ' hot' : ''}" data-n="${n.id}" style="--ac:${a.color || '#1EF08A'};--acx:${a.colorText || '#06140c'}">
       <span class="ai">${a.small || ''}</span>
-      <div class="hd"><b>${esc(a.name || '')}</b>·<span>ahora</span></div>
+      <div class="hd"><b>${esc(a.name || '')}</b>·<span>${esc(n.when || 'ahora')}</span></div>
       ${n.title ? `<div class="tt">${esc(n.title)}</div>` : ''}
       <div class="bd">${esc(n.body)}</div>${n.sub ? `<div class="bd sub">${esc(n.sub)}</div>` : ''}
     </div>`;
   }
   function notify(spec) {
-    const n = { id: 'n' + (++R.seq), app: spec.app || 'flashi', title: spec.title ? T(spec.title) : '', body: T(spec.text), sub: spec.sub ? T(spec.sub) : '', urgent: !!spec.urgent, open: spec.open || null };
+    const val = (v) => (typeof v === 'function' ? v(A) : v ? T(v) : '');
+    const n = { id: 'n' + (++R.seq), app: spec.app || 'flashi', title: val(spec.title), body: val(spec.text), sub: val(spec.sub), when: typeof spec.when === 'function' ? spec.when(A) : (spec.when || ''), urgent: !!spec.urgent, open: spec.open || null };
     allN[n.id] = n;
     if (S.phone.vibrateNotifs) vib(spec.urgent ? [160, 90, 160] : 180);
     if (R.locked && !R.call) {
@@ -348,12 +351,18 @@
     const s = Math.floor((Date.now() - R.call.t0) / 1000);
     el.textContent = Math.floor(s / 60) + ':' + pad(s % 60);
   }
-  function endCall() { stopRing(); R.call = null; renderCall(); if (R.locked) renderLock(); }
+  function endCall() {
+    stopRing(); R.call = null;
+    const el = callL.firstElementChild;
+    if (el) { el.classList.add('closing'); setTimeout(() => { if (!R.call) { callL.innerHTML = ''; applyChrome(); } }, 220); } else renderCall();
+    if (R.locked) renderLock();
+    applyChrome();
+  }
   function callAct(name) {
     const c = R.call; if (!c) return;
     if (name === 'call-reject') { endCall(); }
     else if (name === 'call-answer') { stopRing(); c.phase = 'active'; c.t0 = Date.now(); renderCall(); }
-    else if (name === 'call-end') { stopRing(); c.phase = 'ended'; renderCall(); setTimeout(() => { if (R.call && R.call.phase === 'ended') endCall(); }, 1300); }
+    else if (name === 'call-end') { endCall(); }
     else if (name === 'call-mute') { c.muted = !c.muted; renderCall(); }
     else if (name === 'call-speaker') { c.speaker = !c.speaker; renderCall(); }
   }
@@ -453,6 +462,7 @@
       if (crew.hidden) goImmersive();
       if (!sheet.hidden) return;
       const p = local(e);
+      if (e.target.closest && e.target.closest('.kbd')) { swipe = null; return; }   // el teclado del chat no dispara gestos ocultos
       swipe = { y: p.y, x: p.x, t: e.target, time: Date.now() };
       if (inMenu(p)) { lpPos = p; lp = setTimeout(() => { lp = null; swallowClick(); openSheet(); }, 900); }
       else if (inCue(p) && crew.hidden) {
@@ -544,7 +554,7 @@
     ['avatar', 'Portal · foto de perfil de María'],
     ['cuna', 'Portal · publicación de la cuna (47 y 55)'],
     ['seller', 'Portal · foto de la cuenta que vende la cuna'],
-    ['saved2', 'Portal · Guardado 2'], ['saved3', 'Portal · Guardado 3'], ['saved4', 'Portal · Guardado 4'], ['saved5', 'Portal · Guardado 5'], ['saved6', 'Portal · Guardado 6'],
+    ['local1', 'FLASHI · logo de Timmy\'s (local 1)'], ['local2', 'FLASHI · foto de Giandutti (local 2)'],
     ['grid1', 'Portal · foto 1 del perfil de María'], ['grid2', 'foto 2'], ['grid3', 'foto 3'], ['grid4', 'foto 4'], ['grid5', 'foto 5'], ['grid6', 'foto 6'], ['grid7', 'foto 7'], ['grid8', 'foto 8'], ['grid9', 'foto 9'],
     ['gloria', 'Foto de contacto · Gloria'], ['daniel', 'Foto de contacto · Daniel'], ['clara', 'Foto de contacto · Clara'],
     ['wallLock', 'Fondo de la pantalla bloqueada'], ['wallHome', 'Fondo de la pantalla de inicio']
@@ -565,7 +575,7 @@
     h += `<button class="go" data-m="start">${cur ? 'Reiniciar' : 'Iniciar'} ${esc(s.id === 'libre' ? 'uso libre' : 'escena ' + s.id)} desde el principio</button>`;
     if (s.cues.length) {
       h += `<h2>Momentos · doble toque abajo a la derecha = siguiente</h2><div class="cues">${s.cues.map((c, i) => {
-        const keys = c.notif ? [c.notif.text] : [];
+        const keys = c.notif && typeof c.notif.text === 'string' ? [c.notif.text] : [];
         return `<div class="cue${cur && i === R.cue ? ' next' : ''}"><div class="row"><b>${i + 1} · ${esc(c.label)}</b><button data-m="fire" data-i="${i}">Disparar ya</button></div>
           ${keys.map((k) => area('texts.' + k)).join('')}
           <div class="auto">Se dispara solo a los ${inp(`${sp}.delays.${i}`, 'number', 'min="0" step="0.5" inputmode="decimal"')} s <small>(0 = sólo a mano${i ? '; se cuenta desde el momento anterior' : '; se cuenta desde que arranca la escena'})</small></div></div>`;
@@ -596,7 +606,7 @@
       ${row('Publicaciones', inp('portal.posts', 'number'))}${row('Seguidores', inp('portal.followers', 'number'))}${row('Seguidos', inp('portal.following', 'number'))}
       ${row('Cuenta que vende la cuna', inp('portal.saved.account'))}${row('Texto de la publicación', area('portal.saved.caption', 4))}
       ${row('Me gusta', inp('portal.saved.likes'))}${row('Comentarios', inp('portal.saved.comments'))}${row('Fecha', inp('portal.saved.when'))}
-      ${row('Publicaciones en Guardado', inp('portal.savedCount', 'number', 'min="1" max="6"'))}</div></details>`;
+      ${row('Lugar de la cuna en Guardado', inp('portal.cunaPos', 'number', 'min="1" max="15"'), '1 = primera')}</div></details>`;
     // chat
     h += `<details><summary>Chat y contactos</summary><div class="f">
       ${row('Nombre de la app', inp('chat.appName'))}
@@ -606,7 +616,7 @@
       ${row('Espera antes de borrar (seg.)', inp('chat.eraseAfter', 'number', 'min="0" step="0.5"'))}
       ${row('Otras conversaciones en la lista', area('chat.listExtra', 3), 'Una por línea: nombre | último mensaje | hora')}</div></details>`;
     // datos
-    const dl = { rider: 'Nombre de la rider', riderId: 'ID de rider', cliente: 'Clienta (Clara)', dirCliente: 'Dirección de Clara', local: 'Local del pedido', localDir: 'Dirección del local', dirOferta: 'Dirección del pedido ofrecido (52, 55)', pedido: 'Número de pedido', montoOferta: 'Pago del pedido ofrecido', gananciasHoy: 'Ganancias de hoy', entregasHoy: 'Entregas de hoy', saldoSemana: 'Saldo de la semana (número)', puntualidad: 'Puntualidad', categoria: 'Categoría', obraSocial: 'Llamada al empezar la 47' };
+    const dl = { rider: 'Nombre de la rider', riderId: 'ID de rider', cliente: 'Clienta (Clara)', dirCliente: 'Dirección de Clara', local: 'Local 1 (44, 55)', localSub: 'Local 1 · rubro', localDir: 'Local 1 · dirección', local2: 'Local 2 (52)', local2Sub: 'Local 2 · rubro', local2Dir: 'Local 2 · dirección', dirOferta: 'Dirección del pedido ofrecido (52, 55)', pedido: 'Número de pedido', montoOferta: 'Pago del pedido ofrecido', gananciasHoy: 'Ganancias de hoy', entregasHoy: 'Entregas de hoy', saldoSemana: 'Saldo de la semana (número)', puntualidad: 'Puntualidad', categoria: 'Categoría', obraSocial: 'Llamada al empezar la 47' };
     h += `<details><summary>Datos de la ficción (FLASHI)</summary><div class="f">${Object.keys(dl).map((k) => row(dl[k], inp('data.' + k, k === 'saldoSemana' ? 'number' : 'text'))).join('')}</div></details>`;
     // textos FLASHI
     h += `<details><summary>Todos los textos de FLASHI</summary><div class="stack">${Object.keys(S.texts).map((k) => `<label class="sm">${esc(k)}</label>${area('texts.' + k)}`).join('')}</div></details>`;

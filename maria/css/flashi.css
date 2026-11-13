@@ -130,8 +130,11 @@
 .app-flashi .ring .rt{font-family:var(--fd);font-weight:800;font-size:44px;color:var(--r);letter-spacing:-.03em;line-height:1}
 .app-flashi .ring small{font-size:12px;color:var(--mu);font-weight:700}
 .app-flashi .ocard{margin:0 16px;display:flex;flex-direction:column;gap:5px}
-.app-flashi .ocard .row{display:flex;justify-content:space-between;align-items:baseline;font-weight:800;font-size:16px}
-.app-flashi .ocard .row b{font-family:var(--fd);color:var(--g);font-size:19px}
+.app-flashi .ocard .row{display:flex;align-items:center;gap:12px}
+.app-flashi .ocard .ln{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.app-flashi .ocard .ln b{font-size:16.5px;font-weight:800}
+.app-flashi .ocard .ln small{font-size:12px;color:var(--mu);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-flashi .ocard .amt{font-family:var(--fd);color:var(--g);font-size:19px}
 .app-flashi .ocard .addr{font-size:13.5px}
 .app-flashi .ocard .meta{font-size:12px;color:var(--mu)}
 .app-flashi .bonusbox{margin:8px 16px 14px;border-radius:26px;padding:22px 18px;text-align:center;background:radial-gradient(90% 100% at 50% 0%,#1EF08A55,transparent 70%),linear-gradient(170deg,#10301E,#0A1710);border:1px solid #1EF08A44}
@@ -167,3 +170,7 @@
 .app-flashi .left{display:flex;justify-content:center;gap:8px;margin-top:6px}
 .app-flashi .left span{background:var(--s2);border-radius:12px;padding:8px 12px;font-family:var(--fd);font-weight:700;font-size:15px}
 .app-flashi .left span small{font-family:var(--fb);font-size:11px;color:var(--mu);margin-left:3px}
+
+.app-flashi .lg{width:48px;height:48px;border-radius:14px;background:#fff center/cover no-repeat;flex:none;box-shadow:0 0 0 2px var(--s3)}
+.app-flashi .sheet .who{display:flex;align-items:center;gap:12px}
+.app-flashi .sheet .who>div{display:flex;flex-direction:column;gap:2px}

@@ -43,7 +43,9 @@ maria/
 - Gestos (por coordenadas, no bloquean botones): mantener 1 s arriba-izq = menú · doble toque abajo-der = siguiente momento · mantener 1 s abajo-der = congelar cuenta · deslizar desde la rayita = inicio.
 
 ## Escenas del celular de María (rodaje: sábado 14/11/2026)
-44 entrega tarde · 46 Gloria + llamadas (Daniel/Gloria) · 47 llamada en curso → Portal → Guardado → cuna $200.000 · 48 propina · 52 llamada Daniel + alta demanda + 30 s · 55 escribe y borra a Daniel · 55B saca la cuna de Guardado + bono $50.000 · 59 bono + 5% + 30 entregas + llamada de Clara · uso libre.
+44 entrega tarde (cuenta corriendo) · 46 bloqueo → notificación de Gloria → chat + llamadas (Daniel/Gloria) · 47 llamada en curso → Portal → Guardado → cuna $200.000 · 48 propina · 52 llamada Daniel + alta demanda + 30 s → oferta de Giandutti → mapa con los dos puntos · 55 escribe y borra a Daniel · 55B desde el inicio → Portal → saca la cuna de Guardado + bono $50.000 (Timmy's) · 59 bloqueo → bono + 5% + 30 entregas + llamada de Clara · uso libre.
+
+Locales (pedidos de Mel, 13/11): local 1 = Timmy's · Hamburguesas Smash, Laprida 2542 (logo en `maria/img/locales/timmys.png`); local 2 = Giandutti, Av. Pueyrredón 1527 (foto de chocolates en `giandutti.jpg`). Guardado de Portal: 14 publicaciones fijas en `maria/img/guardado/` (recortadas de capturas de Mel) + la cuna. EATS (v1) todavía dice Burger Voraz: cambiar al migrar.
 
 ## Pendiente
 - **Migrar EATS** (Clara) a esta estructura antes de su rodaje (≈ 26/11/2026). Escenas nuevas de Clara: 45, 48, 49 (FLASHI EATS) y 58 (Portal: Instagram de María con zoom a selfies). La 57 (Clara agenda su número en el celular de María) va en el celular de María.

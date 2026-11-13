@@ -23,9 +23,10 @@
     },
     {
       id: '46', when: 'NOCHE', title: 'Mensaje de Gloria y llamadas',
-      desc: 'Chat abierto con Gloria (“Nena, el alquiler?” de las 10:00). Entra la llamada de Daniel (la corta) y después la de Gloria (la atiende). La hora arranca en 22:00.',
+      desc: 'Pantalla bloqueada. Llega la notificación de Gloria (“Nena, el alquiler?”); al tocarla se abre el chat (con el aviso de mensajes temporales). Después entra la llamada de Daniel (la corta) y la de Gloria (la atiende). La hora arranca en 22:00.',
       app: 'chat', screen: 'thread', p: { thread: 'gloria' },
       cues: [
+        { label: 'Notificación: mensaje de Gloria (al tocarla abre el chat)', notif: { app: 'chat', title: () => P.S.contacts.gloria.name, text: () => P.apps.chat.lastText('gloria'), when: () => P.S.chat.notifWhen, open: { app: 'chat', screen: 'thread', p: { thread: 'gloria', n: 0, kbd: false } } } },
         { label: 'Llamada entrante de Daniel (la corta)', call: 'daniel' },
         { label: 'Llamada entrante de Gloria (la atiende y después corta)', call: 'gloria' }
       ]
@@ -55,8 +56,8 @@
       cues: [
         { label: 'Llamada entrante de Daniel (la corta)', call: 'daniel' },
         { label: 'Notificación: alta demanda', notif: { text: 't52_demand', urgent: true, open: F('home') } },
-        { label: 'Notificación: últimos 30 segundos (arranca la cuenta)', timer: true, notif: { text: 't52_last', urgent: true, open: F('offer', { variant: 'demand', dest: 'oferta' }) } },
-        { label: 'Abrir la oferta con la cuenta regresiva', open: F('offer', { variant: 'demand', dest: 'oferta' }) }
+        { label: 'Notificación: últimos 30 segundos (arranca la cuenta)', timer: true, notif: { text: 't52_last', urgent: true, open: F('offer', { variant: 'demand', dest: 'oferta', local: 2 }) } },
+        { label: 'Abrir la oferta con la cuenta regresiva', open: F('offer', { variant: 'demand', dest: 'oferta', local: 2 }) }
       ]
     },
     {
@@ -65,22 +66,22 @@
       app: 'chat', screen: 'thread', p: { thread: 'daniel' },
       cues: [
         { label: 'Escribir y borrar solo (si el celular está desenfocado)', fn: (A) => P.apps.chat.autoType(A) },
-        { label: 'Notificación: último pedido por $50.000', notif: { text: 't55_bonus', open: F('offer', { variant: 'bonus', dest: 'oferta' }) } }
+        { label: 'Notificación: último pedido por $50.000', notif: { text: 't55_bonus', open: F('offer', { variant: 'bonus', dest: 'oferta', local: 1 }) } }
       ]
     },
     {
       id: '55B', when: 'NOCHE', title: 'Saca la cuna de Guardado y llega el bono',
-      desc: 'Arranca en Portal, en la publicación de la cuna. Ella toca el ícono de guardado para sacarla. Llega “Realizá un último pedido por un bono de $50.000” encima de Portal; la toca y acepta.',
-      app: 'portal', screen: 'post',
+      desc: 'Arranca en el inicio del celular. Ella abre Portal → menú (≡) → Guardado → la cuna y toca el ícono de guardado para sacarla. Llega “Realizá un último pedido por un bono de $50.000” encima de Portal; la toca y acepta.',
+      app: 'home', screen: 'home',
       cues: [
-        { label: 'Notificación: último pedido por $50.000', notif: { text: 't55_bonus', open: F('offer', { variant: 'bonus', dest: 'oferta' }) } },
-        { label: 'Abrir la oferta del bono', open: F('offer', { variant: 'bonus', dest: 'oferta' }) }
+        { label: 'Notificación: último pedido por $50.000', notif: { text: 't55_bonus', open: F('offer', { variant: 'bonus', dest: 'oferta', local: 1 }) } },
+        { label: 'Abrir la oferta del bono', open: F('offer', { variant: 'bonus', dest: 'oferta', local: 1 }) }
       ]
     },
     {
       id: '59', when: 'DÍA', title: 'Bono, 5% más activos, 30 entregas y llamada de Clara',
-      desc: 'FLASHI abierta. Bono de $50.000 → “Sos parte del 5%…” → “Para mantener tu categoría…” → llamada de Clara (la atiende).',
-      app: 'flashi', screen: 'home',
+      desc: 'Pantalla bloqueada (debajo, el inicio). Bono de $50.000 → “Sos parte del 5%…” → “Para mantener tu categoría…” → llamada de Clara (la atiende). Las notificaciones abren FLASHI.',
+      app: 'home', screen: 'home',
       cues: [
         { label: 'Notificación: recibiste el bono de $50.000 [INVENTADO]', notif: { text: 't59_bonus', open: F('earnings', { hl: 'bonus' }) } },
         { label: 'Notificación: sos parte del 5%', notif: { text: 't59_top', open: F('badge') } },

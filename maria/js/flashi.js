@@ -16,26 +16,38 @@
     for (let j = 0; j < L.length; j++) { if (t <= L[j]) { const r = L[j] ? t / L[j] : 0; return [pts[j][0] + (pts[j + 1][0] - pts[j][0]) * r, pts[j][1] + (pts[j + 1][1] - pts[j][1]) * r]; } t -= L[j]; }
     return pts[pts.length - 1];
   }
-  const ROUTE = [[120, 560], [120, 280], [280, 280], [280, 140]];
+  // Recorrido compacto y centrado: así se ven los DOS puntos (ella y el destino) en pantalla
+  const ROUTE = [[118, 372], [118, 318], [204, 318], [204, 246], [278, 246], [278, 198]];
+  function chip(x, y, text, bg, fg) {
+    const w = Math.round(String(text).length * 6.9 + 18);
+    return `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)})"><rect x="${-w / 2}" y="-13" width="${w}" height="24" rx="12" fill="${bg}" stroke="#05120A" stroke-width="2"/><text y="4" text-anchor="middle" font-family="Manrope,system-ui,sans-serif" font-size="12" font-weight="800" fill="${fg}">${String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;')}</text></g>`;
+  }
   function MAP(o = {}) {
     const prog = o.prog == null ? 0.18 : o.prog, id = 'm' + Math.random().toString(36).slice(2, 7);
     let g = '';
-    for (let x = -120; x <= 520; x += 80) g += `<line x1="${x}" y1="-200" x2="${x}" y2="760" stroke="#11201A" stroke-width="11"/>`;
-    for (let y = -140; y <= 700; y += 70) g += `<line x1="-200" y1="${y}" x2="600" y2="${y}" stroke="#11201A" stroke-width="11"/>`;
-    g += '<line x1="-200" y1="280" x2="600" y2="280" stroke="#18301F" stroke-width="22"/><line x1="-220" y1="700" x2="620" y2="-160" stroke="#142A1C" stroke-width="16"/>';
-    g += '<rect x="208" y="358" width="64" height="54" rx="6" fill="#0B2616"/><rect x="48" y="78" width="64" height="54" rx="6" fill="#0B2616"/>';
-    const lab = 'font-family="Manrope,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#4D6B5A" letter-spacing=".5"';
-    g += `<text x="318" y="275" ${lab}>AV. RIVADAVIA</text><text x="-30" y="345" ${lab}>YERBAL</text><text ${lab} transform="translate(196 470) rotate(-90)">HIDALGO</text><text ${lab} transform="translate(116 540) rotate(-90)">ACOYTE</text>`;
+    for (let x = -160; x <= 560; x += 56) g += `<line x1="${x}" y1="-200" x2="${x}" y2="760" stroke="#11201A" stroke-width="8"/>`;
+    for (let y = -150; y <= 720; y += 50) g += `<line x1="-200" y1="${y}" x2="600" y2="${y}" stroke="#11201A" stroke-width="8"/>`;
+    g += '<line x1="-200" y1="318" x2="600" y2="318" stroke="#18301F" stroke-width="16"/><line x1="-220" y1="700" x2="620" y2="-160" stroke="#142A1C" stroke-width="12"/>';
+    g += '<rect x="232" y="330" width="44" height="38" rx="5" fill="#0B2616"/><rect x="40" y="160" width="44" height="38" rx="5" fill="#0B2616"/><rect x="300" y="420" width="44" height="38" rx="5" fill="#0B2616"/>';
+    const lab = 'font-family="Manrope,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#4D6B5A" letter-spacing=".5"';
+    g += `<text x="300" y="313" ${lab}>AV. RIVADAVIA</text><text x="-40" y="313" ${lab}>LAPRIDA</text><text ${lab} transform="translate(199 470) rotate(-90)">HIDALGO</text><text ${lab} transform="translate(113 520) rotate(-90)">ACOYTE</text>`;
     const pts = ROUTE.map((p) => p.join(',')).join(' ');
-    g += `<polyline points="${pts}" fill="none" stroke="#1EF08A" stroke-width="12" stroke-linejoin="round" opacity=".35" filter="url(#${id})"/><polyline points="${pts}" fill="none" stroke="#1EF08A" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>`;
+    g += `<polyline points="${pts}" fill="none" stroke="#1EF08A" stroke-width="12" stroke-linejoin="round" opacity=".3" filter="url(#${id})"/><polyline points="${pts}" fill="none" stroke="#1EF08A" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>`;
     const me = rot(along(ROUTE, prog)), pin = rot(ROUTE[ROUTE.length - 1]);
+    const store = '<path d="M-6-31h12l1.5 4h-15zM-7.5-27h15v1.6a2.5 2.5 0 0 1-5 0 2.5 2.5 0 0 1-5 0 2.5 2.5 0 0 1-5 0zM-6-23.5h12v7h-12z" fill="#FF2B4A"/>';
+    const house = '<path d="M0-33l8 7v9h-5.5v-5h-5v5H-8v-9z" fill="#FF2B4A"/>';
     return `<svg viewBox="0 0 390 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><filter id="${id}" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5"/></filter>` +
-      `<radialGradient id="${id}v" cx="50%" cy="45%" r="70%"><stop offset="60%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity=".65"/></radialGradient></defs>` +
+      `<radialGradient id="${id}v" cx="50%" cy="50%" r="72%"><stop offset="62%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity=".6"/></radialGradient></defs>` +
       `<rect width="390" height="560" fill="#07110B"/><g transform="rotate(-14 195 280)">${g}</g>` +
-      `<g transform="translate(${pin[0].toFixed(1)} ${pin[1].toFixed(1)})"><path d="M0 0C-4-8-15-15-15-26a15 15 0 1 1 30 0C15-15 4-8 0 0Z" fill="#FF2B4A" filter="url(#${id})" opacity=".7"/><path d="M0 0C-4-8-15-15-15-26a15 15 0 1 1 30 0C15-15 4-8 0 0Z" fill="#FF2B4A"/><circle cy="-26" r="5.5" fill="#fff"/></g>` +
+      `<g transform="translate(${pin[0].toFixed(1)} ${pin[1].toFixed(1)})"><path d="M0 0C-4-8-15-15-15-26a15 15 0 1 1 30 0C15-15 4-8 0 0Z" fill="#FF2B4A" filter="url(#${id})" opacity=".7"/><path d="M0 0C-4-8-15-15-15-26a15 15 0 1 1 30 0C15-15 4-8 0 0Z" fill="#FF2B4A"/><circle cy="-26" r="10.5" fill="#fff"/><g transform="translate(0 2)">${o.pick ? store : house}</g></g>` +
       `<g transform="translate(${me[0].toFixed(1)} ${me[1].toFixed(1)})"><circle r="12" fill="none" stroke="#1EF08A" stroke-width="2"><animate attributeName="r" from="10" to="30" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" from=".8" to="0" dur="1.8s" repeatCount="indefinite"/></circle><circle r="10" fill="#1EF08A" stroke="#05120A" stroke-width="4"/></g>` +
-      `<rect width="390" height="560" fill="url(#${id}v)"/></svg>`;
+      `<rect width="390" height="560" fill="url(#${id}v)"/>` +
+      (o.pinLabel ? chip(pin[0], pin[1] - 52, o.pinLabel, '#FF2B4A', '#fff') : '') +
+      (o.meLabel ? chip(me[0], me[1] + 30, o.meLabel, '#1EF08A', '#03140A') : '') +
+      `</svg>`;
   }
+  const LOC = (A, n) => { const D = A.D(); return +n === 2 ? { name: D.local2, sub: D.local2Sub, dir: D.local2Dir, slot: 'local2' } : { name: D.local, sub: D.localSub, dir: D.localDir, slot: 'local1' }; };
+  const logo = (A, l, cls = '') => `<span class="lg ${cls}" style="background-image:url('${A.img(l.slot)}')"></span>`;
 
   const TAB = {
     home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1Z"/></svg>',
@@ -87,7 +99,7 @@
         return top(A) +
           `<div class="urg"><p>${A.esc(A.T('t44_urgent'))}</p><div class="row"><span class="tt num" data-t="m">1:00</span><span>BONO $10.000</span></div><div class="tbar" data-tp><i></i></div></div>` +
           `<div class="dest"><span class="lbl">Entregá a</span><h3>${A.esc(D.cliente)}</h3><span class="addr">${A.esc(D.dirCliente)}</span><span class="meta">Pedido ${A.esc(D.pedido)} · ${A.esc(D.local)} · 1 bolsa</span></div>` +
-          `<div class="minimap">${MAP({ prog: .96 })}</div><div class="acts"><span>Llamar</span><span>Chat</span></div>` +
+          `<div class="minimap">${MAP({ prog: .9 })}</div><div class="acts"><span>Llamar</span><span>Chat</span></div>` +
           '<div class="spacer"></div><div class="bottom"><button class="btn" data-act="confirm">Confirmar entrega</button></div>';
       },
       fail(A) {
@@ -97,16 +109,16 @@
           '<div class="spacer"></div><div class="bottom"><button class="btn ghost" data-act="flashiHome">Buscar próximo pedido</button></div>';
       },
       map(A) {
-        const D = A.D(), pick = (A.p.mode || 'drop') === 'pick';
-        const name = pick ? D.local : D.cliente, addr = pick ? D.localDir : (A.p.dest === 'oferta' ? D.dirOferta : D.dirCliente);
+        const D = A.D(), pick = (A.p.mode || 'drop') === 'pick', L = LOC(A, A.p.local || 1);
+        const name = pick ? L.name : D.cliente, addr = pick ? L.dir : (A.p.dest === 'oferta' ? D.dirOferta : D.dirCliente);
         const near = (A.p.prog || 0) > .9;
-        return top(A) + `<div class="map">${MAP({ prog: A.p.prog })}<div class="instr"><span class="ar">${ARROW}</span><div><b>${near ? 'Llegaste' : '200 m'}</b><span>${near ? 'Tu destino está a la derecha' : 'Girá a la derecha en Hidalgo'}</span></div></div></div>` +
-          `<div class="sheet"><span class="grab"></span><span class="lbl">${pick ? 'Retirá en' : 'Entregá a'}</span><h3>${A.esc(name)}</h3><span class="addr">${A.esc(addr)}</span><span class="meta">${near ? 'A 20 m' : '1,2 km · 6 min'} · Pedido ${A.esc(D.pedido)}</span>` +
+        return top(A) + `<div class="map">${MAP({ prog: A.p.prog, pick, pinLabel: name, meLabel: 'Vos' })}<div class="instr"><span class="ar">${ARROW}</span><div><b>${near ? 'Llegaste' : '200 m'}</b><span>${near ? 'Tu destino está a la derecha' : 'Girá a la derecha en Hidalgo'}</span></div></div></div>` +
+          `<div class="sheet"><span class="grab"></span><div class="who">${pick ? logo(A, L) : ''}<div><span class="lbl">${pick ? 'Retirá en' : 'Entregá a'}</span><h3>${A.esc(name)}</h3></div></div><span class="addr">${A.esc(addr)}</span><span class="meta">${near ? 'A 20 m' : (pick ? '1,4 km · 7 min' : '2,8 km · 14 min')} · Pedido ${A.esc(D.pedido)}</span>` +
           `<button class="btn" data-act="confirm">${pick ? 'Llegué al local' : 'Confirmar entrega'}</button></div>`;
       },
       offer(A) {
-        const D = A.D(), v = A.p.variant || 'demand';
-        const card = `<div class="card ocard"><div class="row"><span>${A.esc(D.local)}</span><b class="num">${A.esc(D.montoOferta)}</b></div><span class="addr">→ ${A.esc(D.dirOferta)}</span><span class="meta">2,8 km · 14 min · 1 bolsa grande</span></div>`;
+        const D = A.D(), v = A.p.variant || 'demand', L = LOC(A, A.p.local || (v === 'bonus' ? 1 : 2));
+        const card = `<div class="card ocard"><div class="row">${logo(A, L)}<span class="ln"><b>${A.esc(L.name)}</b><small>${A.esc(L.sub)} · ${A.esc(L.dir)}</small></span><b class="num amt">${A.esc(D.montoOferta)}</b></div><span class="addr">→ ${A.esc(D.dirOferta)}</span><span class="meta">2,8 km · 14 min · 1 bolsa grande</span></div>`;
         if (v === 'bonus') {
           return top(A) + `<div class="bonusbox"><span class="lbl">Bono por último pedido</span><div class="big num">+$50.000</div><p>${A.esc(A.T('t55_bonus'))}</p></div>` + card +
             '<div class="spacer"></div><div class="bottom"><button class="btn" data-act="accept">Aceptar pedido</button><button class="fine" data-act="reject">Rechazar: perdés el bono</button></div>';
@@ -125,7 +137,7 @@
         const items = [];
         if (hl === 'bonus') items.push(['hl', 'Bono de actividad', 'ahora', 50000]);
         if (hl === 'tip') items.push(['hl', 'Propina extra · ' + D.cliente, 'ahora', 5000]);
-        items.push(['', `Pedido ${D.pedido} · ${D.local}`, 'hace 3 min', 3200], ['', 'Pedido #88207 · Wok Express', 'hace 41 min', 2850], ['neg', 'Cargo por uso de la app', 'hoy', -1200], ['', 'Pedido #88199 · Heladería Polar', 'hace 1 h', 2400], ['', 'Pedido #88190 · Pizzería La Esquina', 'hace 2 h', 2950]);
+        items.push(['', `Pedido ${D.pedido} · ${D.local}`, 'hace 3 min', 3200], ['', `Pedido #88207 · ${D.local2}`, 'hace 41 min', 2850], ['neg', 'Cargo por uso de la app', 'hoy', -1200], ['', 'Pedido #88199 · Heladería Polar', 'hace 1 h', 2400], ['', `Pedido #88190 · ${D.local}`, 'hace 2 h', 2950]);   // pedidos y montos [INVENTADO]
         const total = (+D.saldoSemana || 0) + (hl === 'bonus' ? 50000 : 0) + (hl === 'tip' ? 5000 : 0);
         return top(A) + `<div class="card bal"><span class="lbl">Saldo de la semana</span><div class="big num${hl ? ' green glowg' : ''}">${A.money(total)}</div><span class="note">Se transfiere el lunes · comisión 22%</span></div>` +
           `<div class="mov">${items.map((i) => `<div class="${i[0]}"><span>${A.esc(i[1])}<small>${i[2]}</small></span><b class="num">${i[3] > 0 ? '+' : ''}${A.money(i[3])}</b></div>`).join('')}</div>` +

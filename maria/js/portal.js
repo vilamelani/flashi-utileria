@@ -36,9 +36,9 @@
   const nf = (n) => { n = +n || 0; if (n < 10000) return n.toLocaleString('es-AR'); if (n < 1e6) return (Math.floor(n / 100) / 10).toLocaleString('es-AR') + ' mil'; return (Math.floor(n / 1e5) / 10).toLocaleString('es-AR') + ' M'; };
   const nav = (A) => `<nav class="pt-nav"><span>${I.home}</span><span>${I.search}</span><span>${I.add}</span><span>${I.reels}</span><span class="me" data-act="profile"><img src="${A.img('avatar')}" alt=""></span></nav>`;
   const savedList = (A) => {
-    const n = Math.max(1, Math.min(6, +A.S.portal.savedCount || 6));
-    const others = ['saved2', 'saved3', 'saved4', 'saved5', 'saved6'].slice(0, n - 1);
-    return (A.p.cunaSaved === false ? [] : ['cuna']).concat(others);
+    const list = (A.S.portal.savedImages || []).slice();
+    if (A.p.cunaSaved !== false) { const pos = Math.max(0, Math.min(list.length, (+A.S.portal.cunaPos || 1) - 1)); list.splice(pos, 0, 'cuna'); }
+    return list;
   };
 
   function profile(A) {
@@ -77,7 +77,7 @@
       <div class="pt-top sub"><span class="pt-back" data-act="menu">${I.back}</span><div class="pt-title">Guardado</div><span class="pt-r">${I.plus}</span></div>
       <div class="pt-scroll">
         <div class="pt-coll"><b>Todas las publicaciones</b></div>
-        <div class="pt-grid sq">${list.map((k) => `<div style="background-image:url('${A.img(k)}')"${k === 'cuna' ? ' data-act="post"' : ''}></div>`).join('')}</div>
+        <div class="pt-grid">${list.map((k) => `<div style="background-image:url('${A.img(k)}')"${k === 'cuna' ? ' data-act="post"' : ''}></div>`).join('')}</div>
       </div>${nav(A)}</div>`;
   }
   function post(A) {

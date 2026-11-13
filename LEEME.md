@@ -6,14 +6,14 @@ Un Android falso completo: pantalla bloqueada, inicio, llamadas, **FLASHI Delive
 
 | Escena | Qué muestra | Cómo se usa |
 |---|---|---|
-| **44** · día | FLASHI con la cuenta regresiva de 1 minuto | La cuenta arranca congelada: mantener 1 s abajo a la derecha para que corra. Al llegar a 0 llega “¡Estuviste cerca…! ¡Entregaste tarde!” (o doble toque) |
-| **46** · noche | Chat con Gloria: “Nena, el alquiler?” (10:00). Reloj en 22:00 | Doble toque: llamada de **Daniel** (ella toca Rechazar). Doble toque: llamada de **Gloria** (toca Responder; al terminar, el botón rojo corta) |
-| **47** · día | Llamada en curso con la obra social | Ella corta → queda el inicio → toca Portal → menú (≡) → **Guardado** → la cuna ($200.000) |
+| **44** · día | FLASHI con la cuenta regresiva de 1 minuto (pedido de Timmy's) | La cuenta corre sola desde que arranca la escena (mantener 1 s abajo a la derecha la congela). Al llegar a 0 llega “¡Estuviste cerca…! ¡Entregaste tarde!” (o doble toque) |
+| **46** · noche | Pantalla bloqueada, reloj en 22:00 | Doble toque: llega el mensaje de **Gloria** (“Nena, el alquiler?”); al tocarlo se abre el chat (con el aviso de mensajes temporales). Doble toque: llamada de **Daniel** (ella toca Rechazar). Doble toque: llamada de **Gloria** (toca Responder; el botón rojo corta) |
+| **47** · día | Llamada en curso con la obra social | Ella corta → queda el inicio → toca Portal → menú (≡) → **Guardado** (14 publicaciones fijas + la cuna) → la cuna ($200.000) |
 | **48** · día | Pantalla bloqueada | Doble toque: “te han dejado propina extra por $5000”. Al tocarla se abre Ganancias |
-| **52** · día | Bloqueada y desconectada de FLASHI | Doble toque: llamada de **Daniel** (la corta) → “Alta demanda…” → “Últimos 30 segundos…” (arranca la cuenta) → toca la notificación → **Aceptar pedido** |
+| **52** · día | Bloqueada y desconectada de FLASHI | Doble toque: llamada de **Daniel** (la corta) → “Alta demanda…” → “Últimos 30 segundos…” (arranca la cuenta) → toca la notificación → **Aceptar pedido** (Giandutti) → mapa con ella (“Vos”) y el local |
 | **55** · noche | Chat con Daniel | Ella toca “Mensaje” y escribe: **cualquier tecla escribe** “Hola Daniel, necesito pedirte algo…”, la tecla de borrar lo borra (mantenerla apretada borra rápido). Si el celular está desenfocado, el momento 1 escribe y borra solo |
-| **55B** · noche | Portal, en la publicación de la cuna | Ella toca el ícono de guardado (la saca). Doble toque: llega el bono de $50.000 arriba → lo toca → Aceptar |
-| **59** · día | FLASHI abierta | Doble toques: bono de $50.000 → “Sos parte del 5%…” → “Para mantener tu categoría…” → llamada de **Clara** (la atiende) |
+| **55B** · noche | Inicio del celular | Ella abre Portal → menú (≡) → Guardado → la cuna → toca el ícono de guardado (la saca). Doble toque: llega el bono de $50.000 arriba → lo toca → Aceptar (Timmy's) |
+| **59** · día | Pantalla bloqueada | Doble toques: bono de $50.000 → “Sos parte del 5%…” → “Para mantener tu categoría…” → llamada de **Clara** (la atiende). Las notificaciones abren FLASHI |
 | Libre | Inicio del celular | Para ensayar o planos generales |
 
 ### Gestos ocultos
@@ -26,7 +26,7 @@ Un Android falso completo: pantalla bloqueada, inicio, llamadas, **FLASHI Delive
 ### Qué se cambia desde el menú
 Por escena: dónde arranca, hora, batería, fecha, demora de cada momento, textos de cada notificación.
 General: hora de escena o hora real, operadora (Austral), señal, red, wifi, vibración, fondos de pantalla.
-Fotos desde la galería: la cuna, la foto de la cuenta que la vende, las otras publicaciones de Guardado, la foto de perfil y las 9 fotos de María, las fotos de los contactos.
+Fotos desde la galería: la cuna, la foto de la cuenta que la vende, el logo de cada local, la foto de perfil y las 9 fotos de María, las fotos de los contactos. Las 14 publicaciones de Guardado vienen fijas con la app (lugar de la cuna configurable).
 Textos: conversaciones del chat, nombres y números de contactos, perfil de Portal, texto de la publicación, datos de FLASHI.
 Todo queda guardado en ese celular. “Volver a la configuración original” lo borra.
 
