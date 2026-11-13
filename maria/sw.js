@@ -1,7 +1,7 @@
 /* Guarda toda la app en el celular para que funcione sin conexión.
    Si se cambia algún archivo, subir el número de VERSION para que los celulares se actualicen
    (abrir la app con internet, cerrarla del todo y volver a abrirla). */
-const VERSION = 'flashi-maria-v6';
+const VERSION = 'flashi-maria-v7';
 const ASSETS = [
   './', 'index.html', 'manifest.webmanifest',
   'css/app.css', 'css/flashi.css', 'css/chat.css', 'css/portal.css',
@@ -13,7 +13,8 @@ const ASSETS = [
   'img/guardado/s-agenda.jpg', 'img/guardado/s-bebe.jpg', 'img/guardado/s-bilardo.jpg', 'img/guardado/s-budin.jpg', 'img/guardado/s-calabacines.jpg', 'img/guardado/s-esposo.jpg', 'img/guardado/s-historias.jpg', 'img/guardado/s-mate.jpg', 'img/guardado/s-pancitos.jpg', 'img/guardado/s-perro.jpg', 'img/guardado/s-piel.jpg', 'img/guardado/s-postres.jpg', 'img/guardado/s-tipografias.jpg', 'img/guardado/s-vitaminac.jpg', 'img/locales/timmys.png', 'img/locales/giandutti.jpg'
 ];
 self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(VERSION).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+  // cache: 'reload' = bajar siempre la versión nueva de internet (no la copia que el navegador tenga guardada)
+  e.waitUntil(caches.open(VERSION).then((c) => c.addAll(ASSETS.map((u) => new Request(u, { cache: 'reload' })))).then(() => self.skipWaiting()));
 });
 self.addEventListener('activate', (e) => {
   e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k.startsWith('flashi-maria') && k !== VERSION).map((k) => caches.delete(k)))).then(() => self.clients.claim()));

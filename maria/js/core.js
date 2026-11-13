@@ -542,14 +542,34 @@
         </div>
         <p class="status">Instalada como app: <b class="${inst ? 'ok' : 'warn'}">${inst ? 'sí' : 'no'}</b> ·
           Sin conexión: <b class="${off ? 'ok' : 'warn'}">${off ? 'lista' : 'todavía no'}</b> ·
-          Vibración: <b class="${canVibrate ? 'ok' : 'warn'}">${canVibrate ? 'disponible' : 'no disponible'}</b></p>
+          Vibración: <b class="${canVibrate ? 'ok' : 'warn'}">${canVibrate ? 'disponible' : 'no disponible'}</b> ·
+          Versión: <b data-ver>…</b></p>
+        <button class="ghost" data-crew="update">Buscar actualización</button>
       </div>`;
-    crew.hidden = false; crew.scrollTop = 0; applyChrome();
+    crew.hidden = false; crew.scrollTop = 0; applyChrome(); showVersion();
+  }
+  async function showVersion() {
+    let v = 'sin instalar';
+    try { const k = (await caches.keys()).filter((x) => x.startsWith('flashi-maria')).sort(); if (k.length) v = k[k.length - 1].replace('flashi-maria-', ''); } catch (e) { /* nada */ }
+    $$('[data-ver]', dev).forEach((el) => { el.textContent = v; });
+  }
+  async function checkUpdate() {
+    toast('Buscando actualización…');
+    try {
+      const r = await navigator.serviceWorker.getRegistration();
+      if (!r) { location.reload(); return; }
+      await r.update();
+      const w = r.installing || r.waiting;
+      if (!w) { toast('Ya tenés la última versión'); showVersion(); return; }
+      w.addEventListener('statechange', () => { if (w.state === 'activated') location.reload(); });
+      setTimeout(() => location.reload(), 8000);
+    } catch (e) { location.reload(); }
   }
   function crewClick(e) {
     const b = e.target.closest('[data-crew]'); if (!b) return;
     if (b.dataset.crew === 'start') { goImmersive(); startScene(b.dataset.id); }
     else if (b.dataset.crew === 'settings') openSheet();
+    else if (b.dataset.crew === 'update') checkUpdate();
   }
 
   /* =======================================================================
@@ -574,7 +594,7 @@
   function renderSheet() {
     const s = sceneById(selId) || SCENES[0], sc = SC(s), cur = R.scene && R.scene.id === s.id;
     const sp = `scenes.${s.id}`;
-    let h = `<div class="mh"><h1>Control de rodaje</h1><div class="row2"><button data-m="crew">Lista de escenas</button><button data-m="close" class="hi">Volver</button></div></div>`;
+    let h = (A.updateReady ? `<button class="go" data-m="reload">Hay una versión nueva: tocá para actualizar</button>` : '') + `<div class="mh"><h1>Control de rodaje</h1><div class="row2"><button data-m="crew">Lista de escenas</button><button data-m="close" class="hi">Volver</button></div></div>`;
     h += `<div class="sm">${R.scene ? `En pantalla: <b>${esc(R.scene.id)} · ${esc(R.scene.title)}</b> · momento ${Math.min(R.cue + 1, R.scene.cues.length || 1)} de ${R.scene.cues.length}${R.cue >= R.scene.cues.length && R.scene.cues.length ? ' (terminados)' : ''}` : 'Ninguna escena en pantalla'}</div>`;
     h += `<h2>Escena</h2><div class="chips">${SCENES.map((x) => `<button data-m="sel" data-id="${x.id}" class="${x.id === s.id ? 'on' : ''}">${esc(x.id === 'libre' ? 'Libre' : x.id)}</button>`).join('')}</div>`;
     h += `<div class="scdesc"><b>${esc(s.title)}</b><span>${esc(s.desc)}</span></div>`;
@@ -651,8 +671,10 @@
       <b>Descartar notificación:</b> deslizarla hacia arriba.<br>
       <b>Inicio del celular:</b> deslizar hacia arriba desde la rayita de abajo.<br>
       <b>Llamadas:</b> los botones Rechazar / Responder / Cortar funcionan de verdad.</div>`;
+    h += `<h2>Versión</h2><div class="row2"><span class="sm">Cargada: <b data-ver>…</b></span><button data-m="update">Buscar actualización</button></div>`;
     h += `<h2>Restablecer</h2><div class="row2"><button data-m="reset">${resetArm ? '¿Seguro? Tocá de nuevo: se borran textos, ajustes y fotos' : 'Volver a la configuración original'}</button></div>`;
     sheet.innerHTML = h;
+    showVersion();
   }
   function parseVal(t) { if (t.dataset.type === 'num') { const n = parseFloat(t.value); return isNaN(n) ? 0 : n; } return t.value; }
   function bindSheet() {
@@ -667,6 +689,8 @@
       else if (m === 'start') { sheet.hidden = true; startScene(selId); }
       else if (m === 'fire') { const i = +b.dataset.i; sheet.hidden = true; if (!R.scene || R.scene.id !== selId) startScene(selId); runCue(i); }
       else if (m === 'extra') { const i = +b.dataset.i; sheet.hidden = true; if (!R.scene || R.scene.id !== selId) startScene(selId); const x = R.scene.extras && R.scene.extras[i]; if (x) x.fn(A); }
+      else if (m === 'update') checkUpdate();
+      else if (m === 'reload') location.reload();
       else if (m === 'pick') pickImage(b.dataset.slot);
       else if (m === 'unpick') { await idb.del('img.' + b.dataset.slot); if (imgURL[b.dataset.slot]) URL.revokeObjectURL(imgURL[b.dataset.slot]); delete imgURL[b.dataset.slot]; delete imgFlags[b.dataset.slot]; store.set(IMGKEY, imgFlags); renderSheet(); }
       else if (m === 'pickgrid') pickGrid();

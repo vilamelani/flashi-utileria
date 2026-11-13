@@ -27,7 +27,15 @@
   <script src="js/scenes.js"></script>
   <script>
     PHONE.boot();
-    if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+    if ('serviceWorker' in navigator) {
+      addEventListener('load', () => navigator.serviceWorker.register('sw.js').then((r) => r.update()).catch(() => {}));
+      // Cuando se instala una versión nueva: si no hay ninguna escena en curso, recarga sola; si hay, avisa en el menú
+      let hadController = !!navigator.serviceWorker.controller;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!hadController) { hadController = true; return; }
+        if (PHONE.R.scene) PHONE.updateReady = true; else location.reload();
+      });
+    }
   </script>
 </body>
 </html>

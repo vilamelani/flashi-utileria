@@ -36,6 +36,9 @@ Todo queda guardado en ese celular. “Volver a la configuración original” lo
 3. En la lista de escenas tiene que decir **Sin conexión: lista**. Desde ahí funciona sin internet.
 4. Si antes estaba instalada la versión vieja (delivery.html), borrarla e instalar esta.
 
+### Actualizar
+En la lista de escenas dice **Versión** (por ejemplo `v7`). Para tomar una versión nueva: con internet, tocar **Buscar actualización** (en la lista de escenas o al final del menú). Si no hay ninguna escena en curso, la app se recarga sola cuando termina de bajarla.
+
 ### Checklist de rodaje
 - Modo avión + No molestar. Brillo fijo (sin brillo automático). Tiempo de espera de pantalla al máximo.
 - Vibración del sistema activada (las llamadas vibran; el sonido va en post).
