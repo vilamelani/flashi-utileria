@@ -127,7 +127,7 @@ window.MARIA_DEFAULTS = {
     '47':  { time: '10:41', batt: 71, start: 'call', date: '', delays: [] },
     '48':  { time: '13:07', batt: 37, start: 'lock', date: '', delays: [0, 0] },
     '52':  { time: '14:37', batt: 14, start: 'lock', date: '', dur: 30, delays: [0, 0, 0, 0] },
-    '55':  { time: '23:05', batt: 9,  start: 'app',  date: '', delays: [0, 0] },
+    '55':  { time: '23:05', batt: 9,  start: 'app',  date: '', delays: [0, 0], afterErase: 0 },   // afterErase: segundos después de que borra todo para que llegue el bono (0 = no)
     '55B': { time: '23:07', batt: 9,  start: 'app',  date: '', delays: [0, 0] },   // arranca en el inicio del celular
     '59':  { time: '14:40', batt: 31, start: 'lock', date: '', delays: [0, 0, 0, 0] },
     'libre': { time: '17:45', batt: 52, start: 'app', date: '', delays: [] }

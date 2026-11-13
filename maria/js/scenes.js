@@ -62,11 +62,14 @@
     },
     {
       id: '55', when: 'NOCHE', title: 'Escribe a Daniel y lo borra',
-      desc: 'Chat con Daniel abierto. Ella toca “Mensaje” y escribe con el teclado (cualquier tecla escribe el texto del guion) y lo borra. Después puede ir a Portal → Guardado → sacar la cuna. Llega el bono de $50.000.',
-      app: 'chat', screen: 'thread', p: { thread: 'daniel' },
+      desc: 'Chat con Daniel abierto. Ella toca “Mensaje” y escribe con el teclado (cualquier tecla escribe el texto del guion) y lo borra. Llega el bono de $50.000: a mano (doble toque), a los X s de empezar o a los X s de que termina de borrar (se elige en el menú).',
+      app: 'chat', screen: 'thread', p: { thread: 'daniel' }, erase: true,
       cues: [
-        { label: 'Escribir y borrar solo (si el celular está desenfocado)', fn: (A) => P.apps.chat.autoType(A) },
-        { label: 'Notificación: último pedido por $50.000', notif: { text: 't55_bonus', open: F('offer', { variant: 'bonus', dest: 'oferta', local: 1 }) } }
+        { label: 'Notificación: último pedido por $50.000', notif: { text: 't55_bonus', open: F('offer', { variant: 'bonus', dest: 'oferta', local: 1 }) } },
+        { label: 'Abrir la oferta del bono', open: F('offer', { variant: 'bonus', dest: 'oferta', local: 1 }) }
+      ],
+      extras: [
+        { label: 'Escribir y borrar solo (si el celular está desenfocado)', fn: (A) => P.apps.chat.autoType(A) }
       ]
     },
     {

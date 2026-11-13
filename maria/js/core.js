@@ -431,6 +431,12 @@
     R.cue = i + 1;
     scheduleCue(i + 1);
   }
+  // Eventos que avisan las apps (ej.: el chat avisa cuando ella terminó de borrar lo que escribió)
+  function event(name) {
+    if (name !== 'erased' || !R.scene || !R.scene.erase) return;
+    const d = +SC(R.scene).afterErase || 0, i = R.cue;
+    if (d > 0 && i === 0) later(() => { if (R.cue === i) runCue(i); }, d * 1000);
+  }
   function nextCue() { if (R.scene && R.cue < R.scene.cues.length) runCue(R.cue); else if (R.scene) toast('No hay más momentos', true); }
 
   /* ---------- toast (sólo para el equipo, muy discreto) ---------- */
@@ -581,9 +587,11 @@
           <div class="auto">Se dispara solo a los ${inp(`${sp}.delays.${i}`, 'number', 'min="0" step="0.5" inputmode="decimal"')} s <small>(0 = sólo a mano${i ? '; se cuenta desde el momento anterior' : '; se cuenta desde que arranca la escena'})</small></div></div>`;
       }).join('')}</div>`;
     }
+    if (s.extras && s.extras.length) h += `<h2>Acciones aparte (no cuentan como momento)</h2><div class="cues">${s.extras.map((x, i) => `<div class="cue"><div class="row"><b>${esc(x.label)}</b><button data-m="extra" data-i="${i}">Hacer ya</button></div></div>`).join('')}</div>`;
     if (s.texts && s.texts.length) h += `<h2>Textos en pantalla</h2><div class="stack">${s.texts.map(([k, l]) => `<label class="sm">${esc(l)}</label>${area(k)}`).join('')}</div>`;
     h += `<h2>Ajustes de esta escena</h2><div class="f">`;
     h += row('Arranca en', seg(`${sp}.start`, sc.start, (s.starts || [['lock', 'Bloqueo'], ['app', 'App']])));
+    if (s.erase) h += row('Bono a los X s de que termina de borrar', inp(`${sp}.afterErase`, 'number', 'min="0" step="0.5" inputmode="decimal"'), '0 = no. Se usa en lugar de la demora del momento 1');
     h += row('Hora', inp(`${sp}.time`, 'time'), S.phone.clock === 'device' ? 'Ahora se usa la hora real (ver Teléfono)' : '');
     h += row('Batería (%)', inp(`${sp}.batt`, 'number', 'min="1" max="100"'));
     h += row('Fecha en el bloqueo', inp(`${sp}.date`, 'text', `placeholder="${esc(S.phone.date)}"`), 'Vacío = la general');
@@ -658,6 +666,7 @@
       else if (m === 'sel') { selId = b.dataset.id; resetArm = false; renderSheet(); sheet.scrollTop = 0; }
       else if (m === 'start') { sheet.hidden = true; startScene(selId); }
       else if (m === 'fire') { const i = +b.dataset.i; sheet.hidden = true; if (!R.scene || R.scene.id !== selId) startScene(selId); runCue(i); }
+      else if (m === 'extra') { const i = +b.dataset.i; sheet.hidden = true; if (!R.scene || R.scene.id !== selId) startScene(selId); const x = R.scene.extras && R.scene.extras[i]; if (x) x.fn(A); }
       else if (m === 'pick') pickImage(b.dataset.slot);
       else if (m === 'unpick') { await idb.del('img.' + b.dataset.slot); if (imgURL[b.dataset.slot]) URL.revokeObjectURL(imgURL[b.dataset.slot]); delete imgURL[b.dataset.slot]; delete imgFlags[b.dataset.slot]; store.set(IMGKEY, imgFlags); renderSheet(); }
       else if (m === 'pickgrid') pickGrid();
@@ -696,7 +705,7 @@
      ======================================================================= */
   const A = {
     R, apps: APPS, esc, fmt, money, pad, T, D, fill, img, hasImg, clockStr, dateStr, shortDate,
-    go, open, set, notify, toast, lock, unlock, incomingCall, nextCue, later, vib, timerStart,
+    go, open, set, notify, event, toast, lock, unlock, incomingCall, nextCue, later, vib, timerStart,
     get p() { return R.p; }, get timer() { return R.timer; }, get scene() { return R.scene; },
     render: () => renderScreen(false),
     app(def) { APPS[def.id] = def; },

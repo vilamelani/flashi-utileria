@@ -91,7 +91,14 @@
     const cam = document.querySelector('.cm-cam'); if (cam) cam.hidden = !!d;
     const b = document.querySelector('.cm-btn'); if (b) b.innerHTML = d ? I.send : I.mic;
   }
-  function type(A, dir) { A.p.n = Math.max(0, Math.min(target(A).length, (A.p.n || 0) + dir)); updateDraft(A); }
+  // Cambia cuántas letras hay escritas; si llegó a escribir algo y lo borró todo, avisa al motor
+  function setN(A, n) {
+    A.p.n = Math.max(0, Math.min(target(A).length, n));
+    if (A.p.n >= 3) A.p.wrote = true;
+    if (A.p.n === 0 && A.p.wrote) { A.p.wrote = false; P.event('erased'); }
+    updateDraft(A);
+  }
+  function type(A, dir) { setN(A, (A.p.n || 0) + dir); }
   function scrollBottom() { const b = document.querySelector('.th-body'); if (b) b.scrollTop = b.scrollHeight; }
 
   // Escribe y borra solo (para la 55, cuando el celular está desenfocado)
@@ -100,15 +107,15 @@
     if (!(window.PHONE.R.app === 'chat' && A.p.kbd)) A.open('chat', 'thread', { kbd: true });
     const len = target(A).length, step = 1000 / Math.max(1, +A.S.chat.typeSpeed || 9);
     let i = A.p.n || 0;
-    const up = () => { if (i < len) { i++; A.p.n = i; updateDraft(A); A.later(up, step * (0.6 + Math.random() * 0.8)); } else A.later(down, (+A.S.chat.eraseAfter || 2.5) * 1000); };
-    const down = () => { if (i > 0) { i--; A.p.n = i; updateDraft(A); A.later(down, 55); } };
+    const up = () => { if (i < len) { i++; setN(A, i); A.later(up, step * (0.6 + Math.random() * 0.8)); } else A.later(down, (+A.S.chat.eraseAfter || 2.5) * 1000); };
+    const down = () => { if (i > 0) { i--; setN(A, i); A.later(down, 55); } };
     up();
   }
 
   P.app({
     id: 'chat', get name() { return P.S.chat.appName; }, icon: ICON, small: SMALL, color: '#5B8CFF', colorText: '#fff',
     home: 'list', tone: () => 'light',
-    onSceneStart(A) { A.p.n = 0; A.p.kbd = !!A.p.kbd; A.p.sent = []; },
+    onSceneStart(A) { A.p.n = 0; A.p.wrote = false; A.p.kbd = !!A.p.kbd; A.p.sent = []; },
     autoType,
     lastText: (k) => { const m = parse(P.S.chat.threads[k]).filter((x) => !x.day && !x.sys); return m.length ? m[m.length - 1].text : ''; },
     actions: {
