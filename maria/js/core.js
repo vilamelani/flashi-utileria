@@ -631,7 +631,7 @@
     h += `<details><summary>Portal (perfil de María y la cuna)</summary><div class="f">
       ${row('Nombre de la app', inp('portal.appName'))}${row('Tema', seg('portal.theme', S.portal.theme, [['light', 'Claro'], ['dark', 'Oscuro']]))}
       ${row('Usuario', inp('portal.username'))}${row('Nombre', inp('portal.fullName'))}${row('Biografía', area('portal.bio'))}
-      ${row('Publicaciones', inp('portal.posts', 'number'))}${row('Seguidores', inp('portal.followers', 'number'))}${row('Seguidos', inp('portal.following', 'number'))}
+      ${row('Publicaciones', inp('portal.posts', 'number', 'min="0" max="9"'), 'Es también cuántas fotos se ven en el perfil (máx. 9). Se cargan en Fotos → foto 1, foto 2…')}${row('Seguidores', inp('portal.followers', 'number'))}${row('Seguidos', inp('portal.following', 'number'))}
       ${row('Cuenta que vende la cuna', inp('portal.saved.account'))}${row('Texto de la publicación', area('portal.saved.caption', 4))}
       ${row('Me gusta', inp('portal.saved.likes'))}${row('Comentarios', inp('portal.saved.comments'))}${row('Fecha', inp('portal.saved.when'))}
       ${row('Lugar de la cuna en Guardado', inp('portal.cunaPos', 'number', 'min="1" max="15"'), '1 = primera')}</div></details>`;

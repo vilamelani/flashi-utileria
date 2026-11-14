@@ -43,7 +43,9 @@
 
   function profile(A) {
     const po = A.S.portal;
-    const grid = Array.from({ length: 9 }, (_, i) => `<div style="background-image:url('${A.img('grid' + (i + 1))}')"></div>`).join('');
+    // Se ven tantas fotos como diga "publicaciones" (máximo 9): foto 1, foto 2…
+    const n = Math.max(0, Math.min(9, Math.round(+po.posts || 0)));
+    const grid = Array.from({ length: n }, (_, i) => `<div style="background-image:url('${A.img('grid' + (i + 1))}')"></div>`).join('');
     return `<div class="pt">
       <div class="pt-top"><div class="pt-user">${A.esc(po.username)}${I.chev}</div><div class="pt-acts"><span>${I.add}</span><span data-act="menu">${I.menu}</span></div></div>
       <div class="pt-scroll">

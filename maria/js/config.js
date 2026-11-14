@@ -103,7 +103,7 @@ window.MARIA_DEFAULTS = {
     username: 'mari.gimenez',       // [INVENTADO]
     fullName: 'María',              // [INVENTADO]
     bio: 'Bici, mate y a seguir 🚲',  // [INVENTADO]
-    posts: 23,                      // [INVENTADO]
+    posts: 2,                       // también es cuántas fotos se ven en su perfil (máx. 9): se cargan en Fotos → foto 1, foto 2…
     followers: 312,                 // [INVENTADO]
     following: 405,                 // [INVENTADO]
     saved: {                        // la publicación de la cuna (47 y 55)
