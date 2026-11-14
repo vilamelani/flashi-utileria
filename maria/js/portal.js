@@ -29,6 +29,7 @@
     bell: '<svg viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2.2 2.2 0 0 0 4 0"/></svg>',
     clock: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
     lock: '<svg viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10.5" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>',
+    multi: '<svg viewBox="0 0 24 24"><rect x="7" y="3" width="14" height="14" rx="2.5" fill="#fff" stroke="none"/><path d="M4 7v11.5A2.5 2.5 0 0 0 6.5 21H17" stroke="#fff" stroke-width="2.2" fill="none"/></svg>',
     star: '<svg viewBox="0 0 24 24"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.8z"/></svg>'
   };
   const ICON = '<img src="icons/portal.png" alt="" style="width:100%;height:100%;display:block">';   // mismo ícono que PORTAL
@@ -79,7 +80,7 @@
       <div class="pt-top sub"><span class="pt-back" data-act="menu">${I.back}</span><div class="pt-title">Guardado</div><span class="pt-r">${I.plus}</span></div>
       <div class="pt-scroll">
         <div class="pt-coll"><b>Todas las publicaciones</b></div>
-        <div class="pt-grid">${list.map((k) => `<div style="background-image:url('${A.img(k)}')"${k === 'cuna' ? ' data-act="post"' : ''}></div>`).join('')}</div>
+        <div class="pt-grid">${list.map((k) => `<div style="background-image:url('${A.img(k)}')"${k === 'cuna' ? ' data-act="post"' : ''}>${k === 'cuna' ? `<i class="pt-multi">${I.multi}</i>` : ''}</div>`).join('')}</div>
       </div>${nav(A)}</div>`;
   }
   function post(A) {
@@ -88,8 +89,8 @@
       <div class="pt-top sub"><span class="pt-back" data-act="saved">${I.back}</span><div class="pt-title">Publicaciones</div></div>
       <div class="pt-scroll">
         <div class="pt-ph"><img class="av" src="${A.img('seller')}" alt=""><b>${A.esc(s.account)}</b><span class="ic">${I.dots}</span></div>
-        <div class="pt-img" style="background-image:url('${A.img('cuna')}')"></div>
-        <div class="pt-row"><span>${I.heart}</span><span>${I.bubble}</span><span>${I.send}</span><span class="bm${on ? ' on' : ''}" data-act="toggleSave">${on ? I.bmOn : I.bm}</span></div>
+        <div class="pt-car"><div class="pt-track">${['cuna', 'cuna2'].map((k) => `<div class="pt-slide" style="background-image:url('${A.img(k)}')"></div>`).join('')}</div><span class="pt-count">1/2</span></div>
+        <div class="pt-row"><span>${I.heart}</span><span>${I.bubble}</span><span>${I.send}</span><span class="pt-dots"><i class="on"></i><i></i></span><span class="bm${on ? ' on' : ''}" data-act="toggleSave">${on ? I.bmOn : I.bm}</span></div>
         <div class="pt-likes"><b>${A.esc(s.likes)} Me gusta</b></div>
         <div class="pt-cap"><b>${A.esc(s.account)}</b> ${A.esc(s.caption)}</div>
         <div class="pt-more">Ver los ${A.esc(s.comments)} comentarios</div>
@@ -108,7 +109,22 @@
       post: (A) => A.go('post'),
       toggleSave: (A, el) => { A.p.cunaSaved = A.p.cunaSaved === false; el.classList.toggle('on', A.p.cunaSaved); el.innerHTML = A.p.cunaSaved ? I.bmOn : I.bm; el.classList.add('pop'); setTimeout(() => el.classList.remove('pop'), 300); }
     },
-    after(A, root) { root.dataset.theme = A.S.portal.theme; },
+    after(A, root) {
+      root.dataset.theme = A.S.portal.theme;
+      // Carrusel de la cuna: contador 1/2 y puntitos según la foto que se ve
+      const tr = root.querySelector('.pt-track');
+      if (tr) {
+        const cnt = root.querySelector('.pt-count'), dots = root.querySelectorAll('.pt-dots i');
+        let tHide = null;
+        const upd = () => {
+          const i = Math.round(tr.scrollLeft / Math.max(1, tr.clientWidth));
+          cnt.textContent = `${i + 1}/2`; dots.forEach((d, j) => d.classList.toggle('on', j === i));
+          cnt.classList.remove('hide'); clearTimeout(tHide); tHide = setTimeout(() => cnt.classList.add('hide'), 2500);
+        };
+        tr.addEventListener('scroll', upd, { passive: true });
+        tHide = setTimeout(() => cnt.classList.add('hide'), 2500);
+      }
+    },
     screens: { profile, menu, saved, post }
   });
 })();

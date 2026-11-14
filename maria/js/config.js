@@ -108,7 +108,7 @@ window.MARIA_DEFAULTS = {
     following: 405,                 // [INVENTADO]
     saved: {                        // la publicación de la cuna (47 y 55)
       account: 'cunitas.de.madera', // [INVENTADO]
-      caption: 'Cuna de madera pintada a mano 🤍 Medidas 120 x 60, con colchón. $200.000. Envíos a todo el país, consultas por mensaje.', // [INVENTADO] salvo "$200.000"
+      caption: 'Cuna blanca con mosquitero y chichonera 🤍 Lista para entregar. $200.000. Envíos a todo el país, consultas por mensaje.', // [INVENTADO] salvo "$200.000"
       likes: '1.284',               // [INVENTADO]
       comments: '86',               // [INVENTADO]
       when: '3 de noviembre'        // [INVENTADO]

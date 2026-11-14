@@ -77,7 +77,7 @@
   }
   const PH = {};   // fotos provisorias generadas
   // Fotos que vienen con la app (se pueden reemplazar desde el menú)
-  const DEFAULT_IMG = { local1: 'img/locales/timmys.png', local2: 'img/locales/giandutti.jpg' };
+  const DEFAULT_IMG = { local1: 'img/locales/timmys.png', local2: 'img/locales/giandutti.jpg', cuna: 'img/cuna/cuna-1.jpg', cuna2: 'img/cuna/cuna-2.jpg' };
   function img(slot) { return imgURL[slot] || DEFAULT_IMG[slot] || (/^s-/.test(slot) ? `img/guardado/${slot}.jpg` : placeholder(slot)); }
   function hasImg(slot) { return !!imgURL[slot]; }
 
@@ -578,7 +578,7 @@
   let selId = null, resetArm = false;
   const IMG_SLOTS = [
     ['avatar', 'Portal · foto de perfil de María'],
-    ['cuna', 'Portal · publicación de la cuna (47 y 55)'],
+    ['cuna', 'Portal · cuna, foto 1 del carrusel (47 y 55)'], ['cuna2', 'Portal · cuna, foto 2 del carrusel (close-up con la promo)'],
     ['seller', 'Portal · foto de la cuenta que vende la cuna'],
     ['local1', 'FLASHI · logo de Timmy\'s (local 1)'], ['local2', 'FLASHI · foto de Giandutti (local 2)'],
     ['grid1', 'Portal · foto 1 del perfil de María'], ['grid2', 'foto 2'], ['grid3', 'foto 3'], ['grid4', 'foto 4'], ['grid5', 'foto 5'], ['grid6', 'foto 6'], ['grid7', 'foto 7'], ['grid8', 'foto 8'], ['grid9', 'foto 9'],

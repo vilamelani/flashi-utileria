@@ -71,3 +71,18 @@
 .pt-cap b { font-weight: 600; }
 .pt-more { padding: 6px 14px 0; font-size: 14.5px; color: var(--muted); }
 .pt-when { padding: 6px 14px 18px; font-size: 12px; color: var(--muted); }
+
+/* carrusel de la cuna */
+.pt-car { position: relative; width: 100%; aspect-ratio: 1; background: var(--chip); }
+.pt-track { display: flex; width: 100%; height: 100%; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.pt-track::-webkit-scrollbar { display: none; }
+.pt-slide { flex: 0 0 100%; height: 100%; scroll-snap-align: center; scroll-snap-stop: always; background: center / cover no-repeat; }
+.pt-count { position: absolute; top: 12px; right: 12px; background: #000a; color: #fff; font-size: 12.5px; font-weight: 600; padding: 4px 9px; border-radius: 99px; transition: opacity .3s; }
+.pt-count.hide { opacity: 0; }
+.pt-row { position: relative; }
+.pt-dots { position: absolute !important; left: 50%; top: 50%; transform: translate(-50%, -50%); width: auto !important; height: auto !important; display: flex !important; gap: 4px; }
+.pt-dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--line); }
+.pt-dots i.on { background: #3897F0; }
+.pt-grid > div { position: relative; }
+.pt-multi { position: absolute; top: 6px; right: 6px; display: block; }
+.pt-multi svg { width: 18px !important; height: 18px !important; filter: drop-shadow(0 0 2px #0008); }
